@@ -9,5 +9,27 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    BiocStyle,
+    DESeq2,
+    limma,
+    L1000PAIdata
 Config/testthat/edition: 3
+Imports:
+    methods,
+    stats,
+    utils,
+    dplyr,
+    tibble,
+    stringr,
+    rlang,
+    tidyr,
+    ggplot2,
+    ggrepel,
+    clusterProfiler,
+    BiocGenerics,
+    S4Vectors,
+    SummarizedExperiment
+VignetteBuilder: knitr

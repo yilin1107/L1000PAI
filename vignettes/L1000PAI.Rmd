@@ -1,0 +1,560 @@
+---
+title: "L1000PAI: perturbation activity inference from ranked transcriptomic signatures"
+author: "Yilin Chiu"
+date: "`r Sys.Date()`"
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{L1000PAI: perturbation activity inference from ranked transcriptomic signatures}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Overview
+
+`L1000PAI` is an R package for **direction-aware perturbation activity inference**
+from ranked transcriptomic signatures.
+
+The package supports two related perturbation-signature settings:
+
+1. **Paired perturbation libraries**, in which each perturbagen has both an
+   `Up` and a `Down` signature.
+2. **Single-signature libraries**, in which each perturbagen is represented by
+   a single consensus signature.
+
+Accordingly, `L1000PAI` provides a unified workflow that:
+
+- converts differential expression results into a ranked gene vector
+- runs preranked enrichment against L1000 perturbation signatures
+- automatically detects paired versus single-signature library structure
+- summarizes perturbagen-level results
+- assigns interpretable activity classes
+
+For paired libraries, perturbagen activity is summarized using:
+
+\[
+\mathrm{activity\_score} = NES_{Down} - NES_{Up}
+\]
+
+where `NES_Down` and `NES_Up` are normalized enrichment scores obtained from
+paired perturbation signatures.
+
+# Package workflow
+
+The package supports both **stepwise analysis** and a **one-step wrapper**.
+
+Core functions include:
+
+- `rank_genes()`
+- `read_l1000_gmt()`
+- `available_l1000_libraries()`
+- `get_l1000_library()`
+- `detect_library_mode()`
+- `run_l1000_gsea()`
+- `collapse_pairs()`
+- `classify_activity()`
+- `summarize_single_signatures()`
+- `classify_single_signatures()`
+- `run_l1000_pai()`
+
+# Load package
+
+```{r}
+library(L1000PAI)
+```
+
+# Companion data package: L1000PAIdata
+
+`L1000PAI` can work with user-supplied `TERM2GENE` tables, but it is also
+designed to work with the companion data package `L1000PAIdata`.
+
+`L1000PAIdata` stores bundled L1000-related perturbation libraries in
+`inst/extdata`, while `L1000PAI` provides helper functions to retrieve and
+analyze those libraries directly.
+
+The supported bundled libraries are:
+
+```{r}
+available_l1000_libraries()
+```
+
+Typical bundled library names include:
+
+- `"crispr"`
+- `"chem"`
+- `"ligand"`
+- `"oe"`
+- `"single_drug"`
+- `"kinase_gpcr"`
+- `"kinase_gpcr_up"`
+- `"kinase_gpcr_down"`
+
+If `L1000PAIdata` is installed, these libraries can be loaded directly with
+`get_l1000_library()`.
+
+# Switching across bundled libraries
+
+A key feature of `L1000PAI` is that the same workflow can be reused across
+different perturbation resources simply by switching the `library` argument.
+
+For example:
+
+```{r eval = FALSE}
+gmt_crispr <- get_l1000_library("crispr")
+gmt_chem <- get_l1000_library("chem")
+gmt_ligand <- get_l1000_library("ligand")
+gmt_oe <- get_l1000_library("oe")
+gmt_single_drug <- get_l1000_library("single_drug")
+gmt_kg <- get_l1000_library("kinase_gpcr")
+```
+
+This allows the user to compare perturbation-inference results across:
+
+- CRISPR knockout signatures
+- chemical perturbation signatures
+- ligand perturbation signatures
+- overexpression signatures
+- single-drug perturbation signatures
+- kinase / GPCR perturbation signatures
+
+# Library mode detection
+
+Different libraries may use different internal signature structures.
+
+`L1000PAI` can detect whether a library is:
+
+- **paired** (`Up` / `Down`)
+- **single** (one signature per perturbagen)
+
+```{r}
+term2gene_paired <- data.frame(
+  term = c("DrugA_Up", "DrugA_Up", "DrugA_Down", "DrugA_Down"),
+  gene = c("GeneE", "GeneF", "GeneA", "GeneB"),
+  stringsAsFactors = FALSE
+)
+
+term2gene_single <- data.frame(
+  term = c("TP53", "TP53", "RB1", "RB1"),
+  gene = c("GeneA", "GeneB", "GeneE", "GeneF"),
+  stringsAsFactors = FALSE
+)
+
+detect_library_mode(term2gene_paired)
+detect_library_mode(term2gene_single)
+```
+
+When `run_l1000_pai()` is called with `library_mode = "auto"`, this detection
+step is performed automatically.
+
+# A minimal paired-signature example
+
+We first demonstrate a small toy example using a paired library.
+
+## Input differential-expression table
+
+```{r}
+de_tbl <- data.frame(
+  gene = c("GeneA", "GeneB", "GeneC", "GeneD", "GeneE", "GeneF"),
+  stat = c(3, 2, 1, -1, -2, -3),
+  stringsAsFactors = FALSE
+)
+
+de_tbl
+```
+
+## Build a small paired perturbation library
+
+```{r}
+term2gene_paired <- data.frame(
+  term = c(
+    "DrugA_Up", "DrugA_Up",
+    "DrugA_Down", "DrugA_Down",
+    "DrugB_Up", "DrugB_Up",
+    "DrugB_Down", "DrugB_Down"
+  ),
+  gene = c(
+    "GeneE", "GeneF",
+    "GeneA", "GeneB",
+    "GeneA", "GeneB",
+    "GeneE", "GeneF"
+  ),
+  stringsAsFactors = FALSE
+)
+
+term2gene_paired
+```
+
+## Step 1: rank genes
+
+```{r}
+ranks <- rank_genes(
+  x = de_tbl,
+  gene_col = "gene",
+  stat_col = "stat"
+)
+
+ranks
+```
+
+## Step 2: detect library mode
+
+```{r}
+detect_library_mode(term2gene_paired)
+```
+
+## Step 3: run GSEA
+
+```{r}
+gsea_res_paired <- run_l1000_gsea(
+  ranks = ranks,
+  term2gene = term2gene_paired,
+  min_gs_size = 2,
+  max_gs_size = 500,
+  pvalue_cutoff = 1,
+  seed = TRUE,
+  verbose = FALSE
+)
+
+gsea_res_paired
+```
+
+## Step 4: collapse paired signatures
+
+By default, paired significance is summarized conservatively using the larger
+of the paired p-values (`combine_p_method = "max"`).
+
+```{r}
+pair_res <- collapse_pairs(
+  gsea_table = gsea_res_paired,
+  combine_p_method = "max"
+)
+
+pair_res
+```
+
+## Step 5: classify perturbation activity
+
+```{r}
+classified_pair_res <- classify_activity(
+  pair_table = pair_res,
+  activity_threshold = 0.5,
+  p_value_threshold = 0.25
+)
+
+classified_pair_res
+```
+
+# One-step paired workflow
+
+The same paired workflow can be run with `run_l1000_pai()`.
+
+```{r}
+res_paired <- run_l1000_pai(
+  x = de_tbl,
+  gene_col = "gene",
+  stat_col = "stat",
+  term2gene = term2gene_paired,
+  library_mode = "paired",
+  min_gs_size = 2,
+  max_gs_size = 500,
+  pvalue_cutoff = 1,
+  seed = TRUE,
+  combine_p_method = "max",
+  activity_threshold = 0.5,
+  classify_p_value_threshold = 0.25
+)
+
+res_paired
+```
+
+# Access paired results
+
+```{r}
+result_mode(res_paired)
+```
+
+```{r}
+rank_table(res_paired)
+```
+
+```{r}
+gsea_table(res_paired)
+```
+
+```{r}
+result_table(res_paired)
+```
+
+```{r}
+pai_metadata(res_paired)
+```
+
+# A minimal single-signature example
+
+Many perturbation resources provide only one signature per perturbagen.
+`L1000PAI` supports these libraries through a single-signature mode.
+
+## Build a small single-signature library
+
+```{r}
+term2gene_single <- data.frame(
+  term = c(
+    "TP53", "TP53",
+    "RB1", "RB1",
+    "MYC", "MYC"
+  ),
+  gene = c(
+    "GeneA", "GeneB",
+    "GeneE", "GeneF",
+    "GeneC", "GeneD"
+  ),
+  stringsAsFactors = FALSE
+)
+
+term2gene_single
+```
+
+## Detect library mode
+
+```{r}
+detect_library_mode(term2gene_single)
+```
+
+## Run the single-signature workflow
+
+```{r}
+res_single <- run_l1000_pai(
+  x = de_tbl,
+  gene_col = "gene",
+  stat_col = "stat",
+  term2gene = term2gene_single,
+  library_mode = "single",
+  min_gs_size = 2,
+  max_gs_size = 500,
+  pvalue_cutoff = 1,
+  seed = TRUE,
+  single_nes_threshold = 0.5,
+  classify_p_value_threshold = 0.25
+)
+
+res_single
+```
+
+## Inspect single-signature results
+
+```{r}
+result_mode(res_single)
+```
+
+```{r}
+result_table(res_single)
+```
+
+# Using bundled libraries from L1000PAIdata
+
+If the companion package `L1000PAIdata` is installed, bundled libraries can
+be retrieved directly.
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+available_l1000_libraries()
+```
+
+## Retrieve specific libraries
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+gmt_crispr <- get_l1000_library("crispr")
+gmt_chem <- get_l1000_library("chem")
+gmt_ligand <- get_l1000_library("ligand")
+gmt_single_drug <- get_l1000_library("single_drug")
+```
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+head(gmt_crispr)
+```
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+head(gmt_chem)
+```
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+head(gmt_ligand)
+```
+
+The kinase/GPCR resource is provided in a combined convenience form through
+`library = "kinase_gpcr"`.
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+gmt_kg <- get_l1000_library("kinase_gpcr")
+head(gmt_kg)
+```
+
+## Detect library modes from bundled libraries
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+detect_library_mode(gmt_crispr)
+```
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+detect_library_mode(gmt_chem)
+```
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+detect_library_mode(gmt_ligand)
+```
+
+```{r, eval = requireNamespace("L1000PAIdata", quietly = TRUE)}
+detect_library_mode(gmt_kg)
+```
+
+# Switching libraries in the one-step workflow
+
+The same `run_l1000_pai()` interface can be reused by switching the bundled
+library.
+
+```{r eval = FALSE}
+res_crispr <- run_l1000_pai(
+  x = de_tbl_real,
+  gene_col = "gene",
+  stat_col = "stat",
+  library = "crispr",
+  library_mode = "auto"
+)
+
+res_chem <- run_l1000_pai(
+  x = de_tbl_real,
+  gene_col = "gene",
+  stat_col = "stat",
+  library = "chem",
+  library_mode = "auto"
+)
+
+res_ligand <- run_l1000_pai(
+  x = de_tbl_real,
+  gene_col = "gene",
+  stat_col = "stat",
+  library = "ligand",
+  library_mode = "auto"
+)
+
+res_single_drug <- run_l1000_pai(
+  x = de_tbl_real,
+  gene_col = "gene",
+  stat_col = "stat",
+  library = "single_drug",
+  library_mode = "auto"
+)
+
+res_kg <- run_l1000_pai(
+  x = de_tbl_real,
+  gene_col = "gene",
+  stat_col = "stat",
+  library = "kinase_gpcr",
+  library_mode = "auto"
+)
+```
+
+This design allows the same ranked transcriptomic input to be interpreted from
+multiple perturbational perspectives.
+
+# Interpretation of result classes
+
+`L1000PAI` uses different classification schemes depending on library mode.
+
+## Paired mode
+
+For paired libraries, the default classes are:
+
+- `Activated`
+- `Inhibited`
+- `Discordant`
+- `Not_significant`
+
+These classes jointly depend on:
+
+- paired significance
+- activity score magnitude
+- directional consistency between `NES_Up` and `NES_Down`
+
+## Single mode
+
+For single-signature libraries, the default classes are:
+
+- `Positive_enrichment`
+- `Negative_enrichment`
+- `Not_significant`
+
+These classes depend on:
+
+- the sign and magnitude of `NES`
+- the selected significance threshold
+
+# Recommended usage with differential-expression pipelines
+
+In practice, `L1000PAI` is intended to be used after a differential-expression
+analysis workflow such as `limma` or `DESeq2`.
+
+A typical use pattern is:
+
+1. run differential expression
+2. extract a ranked gene statistic
+3. supply the ranked signature to `run_l1000_pai()`
+4. inspect perturbagen-level results
+5. switch perturbation libraries as needed
+6. perform downstream biological interpretation
+
+For example:
+
+```{r eval = FALSE}
+# fit <- limma::eBayes(...)
+# tt <- limma::topTable(fit, number = Inf)
+# tt$gene <- rownames(tt)
+#
+# res <- run_l1000_pai(
+#   x = tt,
+#   gene_col = "gene",
+#   stat_col = "t",
+#   library = "crispr",
+#   library_mode = "auto"
+# )
+#
+# head(result_table(res))
+```
+
+# Notes on significance and paired p-value combination
+
+For paired libraries, `collapse_pairs()` currently supports:
+
+- `combine_p_method = "max"`  
+  Conservative default. Requires both paired arms to support the perturbagen.
+- `combine_p_method = "fisher"`  
+  A more sensitive exploratory alternative.
+
+For most primary analyses, the conservative `max` method is recommended.
+`fisher` can be useful in exploratory or sensitivity analyses.
+
+# Suggested downstream analyses
+
+After running `L1000PAI`, common next steps include:
+
+- ranking perturbagens by `activity_score` or `NES`
+- filtering on combined adjusted p-values
+- separating `Activated` and `Inhibited` perturbagens
+- extracting perturbagen genes for downstream ORA or GSEA
+- switching across `crispr`, `chem`, `ligand`, `oe`, `single_drug`,
+  and `kinase_gpcr` libraries
+- comparing direct DEG-based enrichment with perturbation-inferred regulator-level enrichment
+
+# Session information
+
+```{r}
+sessionInfo()
+```
