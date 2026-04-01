@@ -100,7 +100,7 @@ devtools::build_vignettes()
 devtools::check()
 
 
-
+resolve_score_direction("chem", "auto")
 
 
 devtools::document()

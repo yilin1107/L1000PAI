@@ -4,7 +4,11 @@
 \alias{collapse_pairs}
 \title{Collapse paired Up/Down perturbation signatures}
 \usage{
-collapse_pairs(gsea_table, combine_p_method = "max")
+collapse_pairs(
+  gsea_table,
+  combine_p_method = "max",
+  score_direction = c("down_minus_up", "up_minus_down")
+)
 }
 \arguments{
 \item{gsea_table}{A data.frame containing GSEA results. It must contain
@@ -14,10 +18,14 @@ at least the columns \code{term}, \code{NES}, and \code{pvalue}.}
 \code{"max"}, which conservatively uses the larger of the paired Up/Down
 p-values. \code{"fisher"} is also supported as an alternative exploratory
 option.}
+
+\item{score_direction}{One of \code{"down_minus_up"} or \code{"up_minus_down"}.
+\code{"down_minus_up"} computes \code{NES_Down - NES_Up}, whereas \code{"up_minus_down"}
+computes \code{NES_Up - NES_Down}.}
 }
 \value{
 A data.frame with paired \code{Up}/\code{Down} statistics, activity score,
-and combined p-values.
+combined p-values, and a unified \code{term} column.
 }
 \description{
 Pair L1000 GSEA results with \code{Up} and \code{Down} suffixes and summarize them

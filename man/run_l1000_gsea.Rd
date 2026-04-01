@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_l1000_gsea.R
 \name{run_l1000_gsea}
 \alias{run_l1000_gsea}
-\title{Run preranked GSEA on L1000 signatures}
+\title{Run L1000 GSEA}
 \usage{
 run_l1000_gsea(
   ranks,
@@ -15,15 +15,17 @@ run_l1000_gsea(
   p_adjust_method = "BH",
   seed = FALSE,
   by = "fgsea",
-  verbose = FALSE
+  verbose = FALSE,
+  nPerm = NULL
 )
 }
 \arguments{
-\item{ranks}{A named numeric vector of ranked genes.}
+\item{ranks}{A named numeric rank vector, or a two-column data.frame with
+columns \code{gene} and \code{stat}.}
 
-\item{term2gene}{A two-column data.frame for enrichment.}
+\item{term2gene}{A two-column TERM2GENE data.frame with columns \code{term} and \code{gene}.}
 
-\item{exponent}{Weighting exponent.}
+\item{exponent}{Weighting exponent for GSEA.}
 
 \item{min_gs_size}{Minimum gene set size.}
 
@@ -31,19 +33,22 @@ run_l1000_gsea(
 
 \item{eps}{Boundary for p-value calculation.}
 
-\item{pvalue_cutoff}{Adjusted p-value cutoff used by GSEA.}
+\item{pvalue_cutoff}{P-value cutoff.}
 
-\item{p_adjust_method}{Multiple-testing adjustment method.}
+\item{p_adjust_method}{Multiple-testing correction method.}
 
-\item{seed}{Logical; whether to enable seeded execution in clusterProfiler GSEA.}
+\item{seed}{Logical.}
 
-\item{by}{Backend used by clusterProfiler GSEA. One of \code{"fgsea"} or \code{"DOSE"}.}
+\item{by}{GSEA backend. One of \code{"fgsea"} or \code{"DOSE"}.}
 
 \item{verbose}{Logical.}
+
+\item{nPerm}{Number of permutations for the \code{"DOSE"} backend. If \code{NULL} and
+\code{by = "DOSE"}, defaults to \code{1000}.}
 }
 \value{
-A data.frame of GSEA results.
+A data.frame of GSEA results with a standardized \code{term} column.
 }
 \description{
-Run preranked GSEA on L1000 signatures
+Run L1000 GSEA
 }

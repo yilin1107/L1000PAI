@@ -12,6 +12,7 @@ run_l1000_pai(
   library = NULL,
   data_package = "L1000PAIdata",
   library_mode = c("auto", "paired", "single"),
+  score_direction = c("auto", "down_minus_up", "up_minus_down"),
   exponent = 1,
   min_gs_size = 2,
   max_gs_size = 500,
@@ -20,6 +21,7 @@ run_l1000_pai(
   p_adjust_method = "BH",
   seed = FALSE,
   by = "fgsea",
+  nPerm = NULL,
   verbose = FALSE,
   combine_p_method = "max",
   activity_threshold = 1,
@@ -48,6 +50,10 @@ a named numeric vector.}
 
 \item{library_mode}{One of \code{"auto"}, \code{"paired"}, or \code{"single"}.}
 
+\item{score_direction}{One of \code{"auto"}, \code{"down_minus_up"}, or
+\code{"up_minus_down"}. For paired libraries, \code{"auto"} resolves according to
+the library type.}
+
 \item{exponent}{Weighting exponent for GSEA.}
 
 \item{min_gs_size}{Minimum gene set size.}
@@ -63,6 +69,9 @@ a named numeric vector.}
 \item{seed}{Logical; whether to enable seeded execution in GSEA.}
 
 \item{by}{GSEA backend. One of \code{"fgsea"} or \code{"DOSE"}.}
+
+\item{nPerm}{Number of permutations for the \code{"DOSE"} backend. If \code{NULL} and
+\code{by = "DOSE"}, defaults to \code{1000}.}
 
 \item{verbose}{Logical.}
 

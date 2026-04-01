@@ -8,7 +8,8 @@ classify_activity(
   pair_table,
   activity_threshold = 1,
   p_value_threshold = 0.05,
-  p_col = NULL
+  p_col = NULL,
+  score_direction = c("down_minus_up", "up_minus_down")
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ p-value column. Default is \code{0.05}.}
 
 \item{p_col}{Name of the p-value column to use. If \code{NULL}, the function
 will use \code{"padj_combined"} when available, otherwise \code{"p_combined"}.}
+
+\item{score_direction}{One of \code{"down_minus_up"} or \code{"up_minus_down"}.}
 }
 \value{
 A data.frame with added columns:

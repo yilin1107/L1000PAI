@@ -31,8 +31,10 @@ classify_activity <- function(
   required_cols <- c("NES_Up", "NES_Down", "activity_score")
   missing_cols <- setdiff(required_cols, colnames(pair_table))
   if (length(missing_cols) > 0) {
-    stop("Missing required columns in `pair_table`: ",
-         paste(missing_cols, collapse = ", "))
+    stop(
+      "Missing required columns in `pair_table`: ",
+      paste(missing_cols, collapse = ", ")
+    )
   }
 
   if (is.null(p_col)) {
@@ -80,7 +82,6 @@ classify_activity <- function(
   x$direction_consistent <- activated_pattern | inhibited_pattern
 
   x$activity_class <- "Not_significant"
-
   x$activity_class[x$is_significant] <- "Discordant"
 
   idx_activated <- x$is_significant &

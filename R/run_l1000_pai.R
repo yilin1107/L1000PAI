@@ -26,6 +26,8 @@
 #' @param p_adjust_method Multiple-testing adjustment method for GSEA.
 #' @param seed Logical; whether to enable seeded execution in GSEA.
 #' @param by GSEA backend. One of `"fgsea"` or `"DOSE"`.
+#' @param nPerm Number of permutations for the `"DOSE"` backend. If `NULL` and
+#'   `by = "DOSE"`, defaults to `1000`.
 #' @param verbose Logical.
 #' @param combine_p_method Method for combining paired p-values in
 #'   [collapse_pairs()]. Default is `"max"`.
@@ -55,6 +57,7 @@ run_l1000_pai <- function(
     p_adjust_method = "BH",
     seed = FALSE,
     by = "fgsea",
+    nPerm = NULL,
     verbose = FALSE,
     combine_p_method = "max",
     activity_threshold = 1,
@@ -112,6 +115,7 @@ run_l1000_pai <- function(
     p_adjust_method = p_adjust_method,
     seed = seed,
     by = by,
+    nPerm = nPerm,
     verbose = verbose
   )
 
@@ -124,31 +128,30 @@ run_l1000_pai <- function(
 
   # 4) paired vs single 分支
   if (mode_used == "paired") {
-    result_table <- collapse_pairs(
+    result_tbl <- collapse_pairs(
       gsea_table = gsea_table,
       combine_p_method = combine_p_method,
       score_direction = score_direction_used
     )
 
-    result_table <- classify_activity(
-      pair_table = result_table,
+    result_tbl <- classify_activity(
+      pair_table = result_tbl,
       activity_threshold = activity_threshold,
       p_value_threshold = classify_p_value_threshold,
       p_col = classify_p_col,
       score_direction = score_direction_used
     )
   } else {
-    result_table <- summarize_single_signatures(gsea_table)
+    result_tbl <- summarize_single_signatures(gsea_table)
 
-    result_table <- classify_single_signatures(
-      single_table = result_table,
+    result_tbl <- classify_single_signatures(
+      single_table = result_tbl,
       nes_threshold = single_nes_threshold,
       p_value_threshold = classify_p_value_threshold,
       p_col = classify_p_col
     )
   }
 
-  # 5) metadata
   metadata <- list(
     input_type = input_type,
     library = library_used,
@@ -167,6 +170,7 @@ run_l1000_pai <- function(
       p_adjust_method = p_adjust_method,
       seed = seed,
       by = by,
+      nPerm = nPerm,
       verbose = verbose
     ),
     pairing_params = list(
@@ -184,7 +188,7 @@ run_l1000_pai <- function(
   L1000PAIResult(
     input_rank = ranks,
     gsea_table = gsea_table,
-    pair_table = result_table,
+    pair_table = result_tbl,
     metadata = metadata
   )
 }

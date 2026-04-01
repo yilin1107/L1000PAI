@@ -14,7 +14,7 @@
 #'   computes `NES_Up - NES_Down`.
 #'
 #' @return A data.frame with paired `Up`/`Down` statistics, activity score,
-#'   and combined p-values.
+#'   combined p-values, and a unified `term` column.
 #' @export
 collapse_pairs <- function(
     gsea_table,
@@ -30,8 +30,10 @@ collapse_pairs <- function(
   required_cols <- c("term", "NES", "pvalue")
   missing_cols <- setdiff(required_cols, colnames(gsea_table))
   if (length(missing_cols) > 0) {
-    stop("Missing required columns in `gsea_table`: ",
-         paste(missing_cols, collapse = ", "))
+    stop(
+      "Missing required columns in `gsea_table`: ",
+      paste(missing_cols, collapse = ", ")
+    )
   }
 
   if (!combine_p_method %in% c("max", "fisher")) {
@@ -69,9 +71,11 @@ collapse_pairs <- function(
   }
 
   keep_cols <- intersect(
-    c("perturbagen", "term", "Description", "setSize", "enrichmentScore",
+    c(
+      "perturbagen", "term", "Description", "setSize", "enrichmentScore",
       "NES", "pvalue", "p.adjust", "qvalues", "rank",
-      "leading_edge", "core_enrichment"),
+      "leading_edge", "core_enrichment"
+    ),
     colnames(x)
   )
 
@@ -117,6 +121,12 @@ collapse_pairs <- function(
   }
 
   pair_tbl$padj_combined <- stats::p.adjust(pair_tbl$p_combined, method = "BH")
+
+  # 統一欄位：讓 paired 結果也有 term，方便 downstream 共用流程
+  pair_tbl$term <- as.character(pair_tbl$perturbagen)
+
+  # 把 term 放前面
+  pair_tbl <- pair_tbl[, c("term", setdiff(colnames(pair_tbl), "term")), drop = FALSE]
 
   pair_tbl <- pair_tbl[order(pair_tbl$activity_score, decreasing = TRUE), , drop = FALSE]
   rownames(pair_tbl) <- NULL
