@@ -42,7 +42,11 @@ columns \code{gene} and \code{stat}.}
 
 \item{seed}{Logical.}
 
-\item{by}{GSEA backend. One of \code{"fgsea"} or \code{"DOSE"}.}
+\item{by}{GSEA backend. One of \code{"fgsea"} or \code{"DOSE"}.
+If clusterProfiler no longer exposes its legacy \code{by} argument,
+\code{"fgsea"} is run directly through \code{fgsea::fgsea()}.
+\code{"DOSE"} requires a clusterProfiler version that supports that backend;
+it is never silently replaced with a different enrichment engine.}
 
 \item{verbose}{Logical.}
 

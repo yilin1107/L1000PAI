@@ -1,5 +1,5 @@
 artifact_id,artifact_role,relative_path_or_provider_key,schema_version,taxonomy_version,sha256,n_rows,primary_key,created_utc
-chem_term_registry_v2,shared_identity_table,inst/extdata/annotation_catalogs/v2/chem_term_registry_v2.csv,1.0.0,2.0.0,26dc805d6ffae6f6aebabda80bfcbecc28b75c78a55fa98689564c0e0d6d06e0,5425,library_term_id; unique(library_term),2026-08-26T00:00:00Z
+chem_term_registry_v2,shared_identity_table,inst/extdata/annotation_catalogs/v2/chem_term_registry_v2.csv,1.0.0,2.0.0,ab233571b2ecf19eea447f2db080622ea965a1c740bfb320d1a5822bf8593aec,5425,library_term_id; unique(library_term),2026-08-26T00:00:00Z
 chem_curation_log_v3,frozen_taxonomy_table,inst/extdata/annotation_catalogs/v3/chem_curation_log_v3.csv,1.0.0,3.0.1,6e71c3f3951d13c1dcb748a2d1a38da678edc4c3baa6d47a4dd9fcb4c78d07e0,1,library_term,2026-10-24T00:00:00Z
 chem_family_registry_v3,frozen_taxonomy_table,inst/extdata/annotation_catalogs/v3/chem_family_registry_v3.csv,1.0.0,3.0.1,b16c3ff5d40bd4d24185fa9b01248ab1587e96aa6c691e0ab65c789b71f9f912,26,family_id,2026-10-24T00:00:00Z
 chem_family_membership_v3,frozen_taxonomy_table,inst/extdata/annotation_catalogs/v3/chem_family_membership_v3.csv,1.0.0,3.0.1,68ca0cb6229ebcc6abe2876d53a43b152ba09cfbdaa1a1235da4e595bd271384,430,analysis_unit_id + family_id,2026-10-24T00:00:00Z

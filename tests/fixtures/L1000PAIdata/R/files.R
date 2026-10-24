@@ -1,3 +1,26 @@
+#' Session-local cache for synthetic companion contract tests
+#'
+#' @return A directory path; the fixture never downloads signature libraries.
+#' @export
+l1000pai_data_cache_dir <- function() {
+  file.path(tempdir(), "L1000PAIdata-fixture-cache")
+}
+
+#' Synthetic source metadata without claims about real library checksums
+#' @return A data.frame with explicitly unavailable content hashes.
+#' @export
+l1000pai_data_sources <- function() {
+  data.frame(library_id = names(list_l1000pai_data_files()),
+             content_sha256 = NA_character_, stringsAsFactors = FALSE)
+}
+
+#' Reject network downloads in the synthetic fixture
+#' @param libraries,... Unused; install the real companion package for downloads.
+#' @export
+download_l1000pai_data <- function(libraries = "all", ...) {
+  stop("The synthetic CI fixture cannot download libraries; use the real L1000PAIdata package.")
+}
+
 #' List synthetic companion fixture files
 #'
 #' @return A named character vector.

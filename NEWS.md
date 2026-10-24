@@ -1,5 +1,21 @@
 # L1000PAI 1.1.0
 
+## Release compatibility corrections
+
+- For clusterProfiler versions that no longer expose the `by` argument,
+  the `fgsea` backend uses `fgsea::fgsea()` directly, preserving the requested
+  enrichment engine rather than silently switching to enrichit's default.
+  The legacy clusterProfiler route is retained where supported. The `DOSE`
+  option requires a clusterProfiler version exposing that backend and fails
+  explicitly when it is unavailable. `qvalue` is an explicit import.
+- Frozen CSV catalogs and their manifests use canonical UTF-8/LF bytes on all
+  platforms. Four historical v2 CRLF hashes and the v3 shared-identity entry
+  were corrected to the shipped LF hashes; table values and memberships are
+  unchanged. Original hashes remain in `annotation_catalogs/BYTE_FORMAT.md`.
+- Regression tests cover the legacy/new GSEA API contract and byte-exact
+  catalog integrity. The Windows CI installer uses an explicit shell, and
+  macOS CI installs the XQuartz runtime required by graphics dependencies.
+
 ## One-call report: `pai_deg_report()`
 
 - `pai_deg_report()` turns a differential-expression table into a PDF report

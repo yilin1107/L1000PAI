@@ -38,6 +38,7 @@ Imports:
     dplyr,
     clusterProfiler,
     fgsea,
+    qvalue,
     Biobase,
     limma,
     AnnotationDbi,
@@ -55,7 +56,7 @@ Imports:
     openxlsx,
     zip
 Suggests: 
-    testthat (>= 3.0.0),
+    testthat (>= 3.2.0),
     knitr,
     rmarkdown,
     BiocStyle,

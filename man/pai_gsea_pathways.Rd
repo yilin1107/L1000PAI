@@ -37,11 +37,14 @@ L1000PAIdata when it is installed, else \code{tools::R_user_dir("L1000PAI", "cac
 }
 \value{
 A \code{pai_pathway_gsea} object with \code{table}, \code{results}, \code{stats} (the activity ranking) and
-\code{sets}.
+\code{sets}. Entries in \code{results} are legacy \code{gseaResult} objects or data.frames
+with the same result columns for the direct fgsea route; \code{table} is the
+stable interface for downstream analysis and plotting.
 }
 \description{
 No call list is cut: every scored target is ranked by its activity score and each pathway is
-tested for concentration at either end (fgsea through \code{clusterProfiler::GSEA()}). A positive
+tested for concentration at either end using fgsea (through the legacy clusterProfiler
+interface when supported, otherwise directly through \code{fgsea::fgsea()}). A positive
 NES means the pathway's genes sit at the Activated end, a negative NES at the Inhibited end.
 }
 \seealso{

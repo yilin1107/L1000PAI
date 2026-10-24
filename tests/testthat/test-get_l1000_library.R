@@ -36,7 +36,7 @@ test_that("core refuses an unverified cached library instead of reading it", {
   skip_if_not_installed("L1000PAIdata", minimum_version = "1.0.0")
   exports <- getNamespaceExports("L1000PAIdata")
   skip_if_not(all(c("get_l1000pai_data_path", "l1000pai_data_sources") %in% exports),
-              "The tiny CI companion fixture has a list-only contract")
+              "The tiny CI companion fixture does not implement verified downloads")
   cache <- tempfile("l1000pai-corrupt-cache-")
   dir.create(file.path(cache, "libraries"), recursive = TRUE)
   on.exit(unlink(cache, recursive = TRUE), add = TRUE)

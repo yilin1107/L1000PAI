@@ -15,7 +15,7 @@
     "intersection-union test",
     "R package"
   ],
-  "description": "R package for direction-aware perturbation activity inference from ranked transcriptomic signatures using paired Up/Down L1000 signature libraries. The L1000 libraries are not included; they are downloaded and verified by the companion package L1000PAIdata.",
+  "description": "R package for direction-aware perturbation activity inference from ranked transcriptomic signatures using paired Up/Down L1000 signature libraries, with inspectable reports and versioned compound annotations. Package code is MIT-licensed; bundled derived annotation tables have separate data licenses, including CC BY-SA 4.0 for taxonomy 3.0.1, documented in inst/extdata/annotation_catalogs/v3/LICENSE_DATA.md. The L1000 signature libraries are not included; they are downloaded and verified by the companion package L1000PAIdata. Inferred transcriptional resemblance is not by itself direct target engagement or demonstrated clinical efficacy.",
   "related_identifiers": [
     {
       "identifier": "https://github.com/yilin1107/L1000PAIdata",

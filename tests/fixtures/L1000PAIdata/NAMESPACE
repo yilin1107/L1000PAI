@@ -1,1 +1,4 @@
 export(list_l1000pai_data_files)
+export(l1000pai_data_cache_dir)
+export(l1000pai_data_sources)
+export(download_l1000pai_data)

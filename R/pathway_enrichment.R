@@ -343,19 +343,22 @@ pai_enrichplot <- function(e, n = 4, collections = NULL, cutoff = 0.05, title = 
 # Pathway GSEA on the activity scores of all scored targets
 # 
 # No call list is cut: every scored target of a gene-level library is ranked by its activity
-# score, and each pathway is tested for concentration at either end (fgsea through
-# clusterProfiler::GSEA). Pathways are restricted to the scored targets. A positive NES means
+# score, and each pathway is tested for concentration at either end using fgsea.
+# Pathways are restricted to the scored targets. A positive NES means
 # the pathway's genes sit among the Activated end (activity up); negative, the Inhibited end.
 #' Pathway GSEA on the activity scores of all scored targets
 #'
 #' No call list is cut: every scored target is ranked by its activity score and each pathway is
-#' tested for concentration at either end (fgsea through `clusterProfiler::GSEA()`). A positive
+#' tested for concentration at either end using fgsea (through the legacy clusterProfiler
+#' interface when supported, otherwise directly through `fgsea::fgsea()`). A positive
 #' NES means the pathway's genes sit at the Activated end, a negative NES at the Inhibited end.
 #'
 #' @inheritParams pai_enrich
 #' @param eps,seed Passed to fgsea; the seed makes the P values reproducible.
 #' @return A `pai_pathway_gsea` object with `table`, `results`, `stats` (the activity ranking) and
-#'   `sets`.
+#'   `sets`. Entries in `results` are legacy `gseaResult` objects or data.frames
+#'   with the same result columns for the direct fgsea route; `table` is the
+#'   stable interface for downstream analysis and plotting.
 #' @family pathway analysis
 #' @export
 pai_gsea_pathways <- function(x, collections = names(.pai_collections), min_size = 10, max_size = 500,
@@ -378,9 +381,11 @@ pai_gsea_pathways <- function(x, collections = names(.pai_collections), min_size
     gs <- get_pai_genesets(cols[[cl]], cache_dir = cache_dir)
     sets[[cl]] <- attributes(gs)[c("version", "file", "sha256")]
     set.seed(seed)
-    r <- suppressMessages(suppressWarnings(clusterProfiler::GSEA(stats, TERM2GENE = gs$TERM2GENE,
-      TERM2NAME = gs$TERM2NAME, exponent = 1, minGSSize = min_size, maxGSSize = max_size, eps = eps,
-      pvalueCutoff = 1, pAdjustMethod = p_adjust_method, seed = TRUE, by = "fgsea", verbose = FALSE)))
+    r <- suppressMessages(suppressWarnings(.call_l1000_gsea(args = list(
+      geneList = stats, TERM2GENE = gs$TERM2GENE, TERM2NAME = gs$TERM2NAME,
+      exponent = 1, minGSSize = min_size, maxGSSize = max_size, eps = eps,
+      pvalueCutoff = 1, pAdjustMethod = p_adjust_method, seed = TRUE, verbose = FALSE
+    ), by = "fgsea")))
     res[[cl]] <- r
     t <- as.data.frame(r)
     if (nrow(t)) {
