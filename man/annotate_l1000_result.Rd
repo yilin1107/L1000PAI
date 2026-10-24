@@ -4,13 +4,16 @@
 \alias{annotate_l1000_result}
 \title{Annotate an L1000 result table with packaged library classifications}
 \usage{
-annotate_l1000_result(x, library = NULL)
+annotate_l1000_result(x, library = NULL, version = NULL)
 }
 \arguments{
 \item{x}{An \code{L1000PAIResult} object or a result data.frame.}
 
 \item{library}{Optional library name when \code{x} is not an \code{L1000PAIResult}
 object.}
+
+\item{version}{For \code{chem} results: annotation version, \code{"3.0.1"} (default)
+or \code{"legacy"}; see \code{\link[=get_l1000_annotation_catalog]{get_l1000_annotation_catalog()}}.}
 }
 \value{
 A data.frame with annotation columns appended.

@@ -10,7 +10,10 @@ test_that("get_l1000_annotation_catalog loads packaged catalogs", {
   ligand <- get_l1000_annotation_catalog("ligand")
   kg <- get_l1000_annotation_catalog("kinase_gpcr")
 
-  expect_true(all(c("compound_name", "BigClass", "MechanismClass", "TargetFamily") %in% names(chem)))
+  expect_true(all(c("compound_name", "BroadClass", "FamilyClass", "TargetClass", "EvidenceTier") %in% names(chem)))
+  legacy <- get_l1000_annotation_catalog("chem", version = "legacy")
+  expect_true(all(c("compound_name", "BigClass", "MechanismClass", "TargetFamily") %in% names(legacy)))
+  expect_equal(nrow(chem), nrow(legacy))
   expect_true(all(c("base_ligand", "LigandGroup", "FunctionalTheme") %in% names(ligand)))
   expect_true(all(c("target", "SignalFamily", "TargetClass") %in% names(kg)))
   expect_true(nrow(chem) > 0)
@@ -30,9 +33,14 @@ test_that("annotate_l1000_result merges chem annotations", {
 
   res <- annotate_l1000_result(chem_df, library = "chem")
 
-  expect_true(all(c("compound_name", "BigClass", "MechanismClass", "TargetFamily") %in% names(res)))
+  expect_true(all(c("compound_name", "BroadClass", "FamilyClass", "TargetClass") %in% names(res)))
   expect_equal(res$compound_name[[1]], "Erlotinib")
-  expect_false(is.na(res$BigClass[[1]]))
+  expect_match(res$TargetGenes[[1]], "EGFR")
+  expect_identical(res$EvidenceTier[[1]], "A")
+
+  legacy <- annotate_l1000_result(chem_df, library = "chem", version = "legacy")
+  expect_true(all(c("BigClass", "MechanismClass", "TargetFamily") %in% names(legacy)))
+  expect_false(is.na(legacy$BigClass[[1]]))
 })
 
 test_that("build_l1000_annotation_tables returns ligand weighted summaries", {

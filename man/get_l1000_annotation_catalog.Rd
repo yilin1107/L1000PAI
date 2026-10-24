@@ -4,15 +4,33 @@
 \alias{get_l1000_annotation_catalog}
 \title{Get a packaged annotation catalog for an L1000 library}
 \usage{
-get_l1000_annotation_catalog(library = c("chem", "ligand", "kinase_gpcr"))
+get_l1000_annotation_catalog(
+  library = c("chem", "ligand", "kinase_gpcr"),
+  version = NULL
+)
 }
 \arguments{
 \item{library}{One of \code{available_l1000_annotation_catalogs()}.}
+
+\item{version}{For \code{chem} only: \code{"3.0.1"} (default) or \code{"legacy"}. Ignored
+for the other libraries.}
 }
 \value{
 A data.frame annotation catalog.
 }
 \description{
-Load the slim packaged annotation catalog used to annotate bundled \code{chem},
-\code{ligand}, or \code{kinase_gpcr} results.
+Load the packaged annotation catalog used to annotate \code{chem}, \code{ligand}, or
+\code{kinase_gpcr} results.
+}
+\details{
+For \code{chem}, the default is the taxonomy 3.0.1 call for each compound: the
+primary target genes and action, three class levels (\code{TargetClass},
+\code{FamilyClass}, \code{BroadClass}), the evidence tier (\code{A} curated mechanism in
+ChEMBL, the Guide to PHARMACOLOGY or LINCS 2020, or an author decision;
+\code{B} bioactivity only; \code{C}/\code{D} legacy label only; \code{U} unknown; \code{X} not a small
+molecule), the confidence (\code{corroborated}, \code{single}, \code{conflict}, or
+\code{author_curated} when an author decision replaces the database evidence) and
+the record identifiers behind the call. Class columns are empty below tier B.
+\code{version = "legacy"} returns the earlier catalog (\code{Class1}, \code{BigClass},
+\code{MechanismClass}, \code{TargetFamily}).
 }

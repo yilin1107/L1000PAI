@@ -83,6 +83,26 @@ For these libraries, `run_l1000_pai()` performs:
 library(L1000PAI)
 ```
 
+# One-call report
+
+For a differential-expression table, `pai_deg_report()` runs everything below
+in one call and writes a PDF report of up to 19 pages for non-specialists, an Excel
+workbook of every table behind it and an RDS file with the R objects. The gene
+column (symbols, Ensembl or Entrez IDs) and the ranking statistic (`t`, `stat`,
+or the sign of the fold change times -log10 P) are found automatically.
+
+```{r eval = FALSE}
+tt <- limma::topTable(fit, coef = "TreatedVsControl", number = Inf)
+report <- pai_deg_report(tt, contrast = "Treated vs control", out_dir = "L1000PAI_report")
+report            # files and the seven quality checks
+report$tables$crispr_targets
+```
+
+The report states the answer for the data at the top of each page, flags what
+needs checking (coverage, few calls, Discordant pairs, a proliferation signal,
+common-hit compounds, called genes absent from the input) and ends with the
+methods, settings, versions and data fingerprints needed to repeat it.
+
 # Core functions
 
 The main user-facing functions include:
@@ -499,11 +519,16 @@ For single-signature libraries, default classes include:
 
 ## Versioned Chem-family taxonomy
 
-The v2 Chem taxonomy is an additive, version-locked resource. It leaves the
-legacy one-row-per-compound annotation API unchanged, while providing a full
-exact-term registry and curated many-to-many family memberships. Strict
-same-mechanism analyses should select `family_level = "direct_moa"`; broader
-`pathway_context` memberships are retained for exploratory annotation.
+Chem taxonomy 3.0.1 (the default) gives every Chem compound a mechanism call
+from public databases (ChEMBL drug mechanisms, Guide to PHARMACOLOGY primary
+targets, LINCS 2020 annotation, ChEMBL bioactivity) with an evidence tier, a
+confidence flag and the record identifiers, and grades the strict family
+memberships (`A` two sources agree, `B` curated v2 member not contradicted,
+`C` single source, `U` contradicted). Strict same-mechanism analyses should
+select `family_level = "direct_moa"`; broader `pathway_context` memberships are
+retained for exploratory annotation. The frozen v2 taxonomy and the earlier
+one-row-per-compound catalog remain available with `version = "2.0.0"` and
+`get_l1000_annotation_catalog("chem", version = "legacy")`.
 
 ```{r eval=FALSE}
 chem_long <- annotate_chem_families(

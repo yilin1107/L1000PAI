@@ -402,12 +402,55 @@
   out[order(out$group_meta_fdr, -abs(out$group_meta_z), -out$n_meta_sig, out$category), , drop = FALSE]
 }
 
-.build_chem_annotation_tables <- function(annotated_result) {
+.build_chem_annotation_tables <- function(annotated_result, version = "3.0.1") {
+  if (identical(version, "legacy")) {
+    return(list(
+      annotated_result = annotated_result,
+      big_class_summary = .summarize_category_table(annotated_result, "BigClass", "compound_name"),
+      mechanism_class_summary = .summarize_category_table(annotated_result, "MechanismClass", "compound_name"),
+      target_family_summary = .summarize_category_table(annotated_result, "TargetFamily", "compound_name")
+    ))
+  }
   list(
     annotated_result = annotated_result,
-    big_class_summary = .summarize_category_table(annotated_result, "BigClass", "compound_name"),
-    mechanism_class_summary = .summarize_category_table(annotated_result, "MechanismClass", "compound_name"),
-    target_family_summary = .summarize_category_table(annotated_result, "TargetFamily", "compound_name")
+    broad_class_summary = .summarize_category_table(annotated_result, "BroadClass", "compound_name"),
+    family_class_summary = .summarize_category_table(annotated_result, "FamilyClass", "compound_name"),
+    target_class_summary = .summarize_category_table(annotated_result, "TargetClass", "compound_name")
+  )
+}
+
+.chem_catalog_versions <- function() c("3.0.1", "legacy")
+
+.resolve_chem_catalog_version <- function(version) {
+  if (is.null(version)) {
+    return("3.0.1")
+  }
+  match.arg(version, .chem_catalog_versions())
+}
+
+# One row per Chem library term from the taxonomy 3.0.1 term annotation, in the
+# shape of an annotation catalog. Class columns are filled only for tier A
+# (curated mechanism) and tier B (bioactivity) calls.
+.chem_catalog_v3 <- function() {
+  ann <- get_chem_family_catalog("term_annotation", "3.0.1")
+  data.frame(
+    compound_name = ann$library_term,
+    BroadClass = ann$class_broad,
+    FamilyClass = ann$class_family,
+    TargetClass = ann$class_target,
+    TargetGenes = ann$primary_genes,
+    Action = ann$action,
+    ActionDirection = ann$direction,
+    EvidenceTier = ann$tier,
+    EvidenceConfidence = ann$confidence,
+    EvidencePrimarySource = ann$primary_source,
+    EvidenceSources = ann$evidence_sources,
+    EvidenceRecordIds = ann$evidence_record_ids,
+    LegacyClass1 = ann$legacy_Class1,
+    LegacyVsV3 = ann$legacy_vs_v3,
+    TaxonomyVersion = ann$taxonomy_version,
+    stringsAsFactors = FALSE,
+    check.names = FALSE
   )
 }
 
@@ -461,20 +504,42 @@ available_l1000_annotation_catalogs <- function() {
 
 #' Get a packaged annotation catalog for an L1000 library
 #'
-#' Load the slim packaged annotation catalog used to annotate bundled `chem`,
-#' `ligand`, or `kinase_gpcr` results.
+#' Load the packaged annotation catalog used to annotate `chem`, `ligand`, or
+#' `kinase_gpcr` results.
+#'
+#' For `chem`, the default is the taxonomy 3.0.1 call for each compound: the
+#' primary target genes and action, three class levels (`TargetClass`,
+#' `FamilyClass`, `BroadClass`), the evidence tier (`A` curated mechanism in
+#' ChEMBL, the Guide to PHARMACOLOGY or LINCS 2020, or an author decision;
+#' `B` bioactivity only; `C`/`D` legacy label only; `U` unknown; `X` not a small
+#' molecule), the confidence (`corroborated`, `single`, `conflict`, or
+#' `author_curated` when an author decision replaces the database evidence) and
+#' the record identifiers behind the call. Class columns are empty below tier B.
+#' `version = "legacy"` returns the earlier catalog (`Class1`, `BigClass`,
+#' `MechanismClass`, `TargetFamily`).
 #'
 #' @param library One of `available_l1000_annotation_catalogs()`.
+#' @param version For `chem` only: `"3.0.1"` (default) or `"legacy"`. Ignored
+#'   for the other libraries.
 #'
 #' @return A data.frame annotation catalog.
 #' @export
 get_l1000_annotation_catalog <- function(
-    library = c("chem", "ligand", "kinase_gpcr")
+    library = c("chem", "ligand", "kinase_gpcr"),
+    version = NULL
 ) {
   library <- match.arg(library)
+  version <- if (library == "chem") .resolve_chem_catalog_version(version) else "legacy"
+  cache_key <- paste(library, version, sep = "::")
 
-  if (exists(library, envir = .l1000_annotation_cache, inherits = FALSE)) {
-    return(get(library, envir = .l1000_annotation_cache, inherits = FALSE))
+  if (exists(cache_key, envir = .l1000_annotation_cache, inherits = FALSE)) {
+    return(get(cache_key, envir = .l1000_annotation_cache, inherits = FALSE))
+  }
+
+  if (library == "chem" && version == "3.0.1") {
+    catalog <- .chem_catalog_v3()
+    assign(cache_key, catalog, envir = .l1000_annotation_cache)
+    return(catalog)
   }
 
   path <- .annotation_catalog_path(library)
@@ -486,7 +551,7 @@ get_l1000_annotation_catalog <- function(
   }
 
   catalog <- .read_annotation_catalog(path)
-  assign(library, catalog, envir = .l1000_annotation_cache)
+  assign(cache_key, catalog, envir = .l1000_annotation_cache)
   catalog
 }
 
@@ -498,13 +563,15 @@ get_l1000_annotation_catalog <- function(
 #' @param x An `L1000PAIResult` object or a result data.frame.
 #' @param library Optional library name when `x` is not an `L1000PAIResult`
 #'   object.
+#' @param version For `chem` results: annotation version, `"3.0.1"` (default)
+#'   or `"legacy"`; see [get_l1000_annotation_catalog()].
 #'
 #' @return A data.frame with annotation columns appended.
 #' @export
-annotate_l1000_result <- function(x, library = NULL) {
+annotate_l1000_result <- function(x, library = NULL, version = NULL) {
   library <- .resolve_annotation_library(x, library = library)
   df <- .as_result_df(x)
-  catalog <- get_l1000_annotation_catalog(library)
+  catalog <- get_l1000_annotation_catalog(library, version = version)
 
   if (library == "chem") {
     df <- .prepare_chem_result(df)
@@ -527,16 +594,21 @@ annotate_l1000_result <- function(x, library = NULL) {
 #' @param x An `L1000PAIResult` object or a result data.frame.
 #' @param library Optional library name when `x` is not an `L1000PAIResult`
 #'   object.
+#' @param version For `chem` results: annotation version, `"3.0.1"` (default)
+#'   or `"legacy"`. Version 3.0.1 summarizes by `BroadClass`, `FamilyClass`
+#'   and `TargetClass`; `"legacy"` by `BigClass`, `MechanismClass` and
+#'   `TargetFamily`.
 #'
 #' @return A named list of data.frames.
 #' @export
-build_l1000_annotation_tables <- function(x, library = NULL) {
+build_l1000_annotation_tables <- function(x, library = NULL, version = NULL) {
   library <- .resolve_annotation_library(x, library = library)
-  annotated_result <- annotate_l1000_result(x, library = library)
+  chem_version <- if (library == "chem") .resolve_chem_catalog_version(version) else NULL
+  annotated_result <- annotate_l1000_result(x, library = library, version = chem_version)
 
   switch(
     library,
-    chem = .build_chem_annotation_tables(annotated_result),
+    chem = .build_chem_annotation_tables(annotated_result, version = chem_version),
     ligand = .build_ligand_annotation_tables(annotated_result),
     kinase_gpcr = .build_kinase_gpcr_annotation_tables(annotated_result)
   )
@@ -594,6 +666,8 @@ annotated_result_table <- function(x) {
 #' @param library Optional library name when `x` is not an `L1000PAIResult`
 #'   object.
 #' @param prefix Optional filename prefix. Defaults to the library name.
+#' @param version For `chem` results: annotation version, `"3.0.1"` (default)
+#'   or `"legacy"`.
 #'
 #' @return Invisibly returns the named list of tables that were written.
 #' @export
@@ -601,14 +675,15 @@ write_l1000_annotation_tables <- function(
     x,
     out_dir,
     library = NULL,
-    prefix = NULL
+    prefix = NULL,
+    version = NULL
 ) {
   library <- .resolve_annotation_library(x, library = library)
   if (!is.character(out_dir) || length(out_dir) != 1 || !nzchar(out_dir)) {
     stop("`out_dir` must be a single non-empty character string.")
   }
 
-  tables <- build_l1000_annotation_tables(x, library = library)
+  tables <- build_l1000_annotation_tables(x, library = library, version = version)
   if (is.null(prefix)) {
     prefix <- library
   }

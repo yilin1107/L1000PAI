@@ -1,26 +1,118 @@
+# L1000PAI 1.1.0
+
+## One-call report: `pai_deg_report()`
+
+- `pai_deg_report()` turns a differential-expression table into a PDF report
+  of up to 19 pages written for non-specialists, an Excel workbook of every table
+  behind it (with a column dictionary) and an RDS file of the R objects. The
+  gene column (symbols, Ensembl or Entrez IDs) and the ranking statistic
+  (limma `t`, DESeq2 `stat`, or sign(log fold change) x -log10 P for edgeR)
+  are found automatically; duplicate genes keep the largest |statistic|.
+- Both L1000 libraries are scored at the package settings; pathways come from
+  `pai_enrich()` or, when no term is significant, `pai_gsea_pathways()`, and
+  are shown in depth with every enrichment display of the package
+  (`pai_enrichplot()`, `pai_gobubble()`, `pai_term_cnetplot()`,
+  `pai_gocircle()`, `pai_gochord()`, `pai_gobar()`, `pai_govenn()`,
+  `pai_gocluster()`, `pai_goheat()`, `pai_armmap()`, `pai_hubplot()`,
+  `pai_emapplot()`, `pai_chordplot()`, `pai_enrich_cnetplot()`;
+  `enrichment = "core"` keeps three pages); the top knockout and compound
+  calls are shown with `pai_evidence_card()` and `pai_cnetplot()`;
+  compound mechanisms and evidence tiers from taxonomy 3.0.1.
+- Seven quality checks (OK, Check, Caution): gene coverage, number of calls,
+  Discordant share, a proliferation signal in the input (MSigDB Hallmark E2F
+  targets and G2M checkpoint, shipped with the package under CC BY 4.0),
+  common-hit compounds (a reference of how each compound usually ranks in 12
+  public GEO perturbation contrasts, shipped in `inst/extdata/report` with the
+  contrasts listed), and called genes absent from the input.
+- New imports: openxlsx, zip and DBI.
+- The patchwork namespace is now imported, so `pai_gocircle()`, `pai_gochord()`,
+  `pai_goheat()` and the other plots that combine panels with `|` or `/` work
+  when they are the first plot of a session (they failed with "Can't find
+  method for generic `|`" unless patchwork had been loaded).
+- `get_pai_genesets()` builds the GO gene sets with one SQL query per ontology
+  on the org.Hs.eg.db tables. The files are byte-identical to the earlier
+  `select()`-based build, which needed about 6 GB of memory; the new build
+  takes about 15 seconds and under 1 GB.
+
+## Chem compound annotation: taxonomy 3.0.1
+
+- Every Chem library compound now has a mechanism call built from public
+  databases and matched by structure (LINCS 2020 InChIKey to ChEMBL): primary
+  target genes and action from ChEMBL drug mechanisms, the Guide to
+  PHARMACOLOGY primary targets, the LINCS 2020 compound annotation or ChEMBL
+  bioactivity, with an evidence tier (`A` curated, `B` bioactivity, `C`/`D`
+  earlier label only, `U` unknown, `X` not a small molecule), a confidence
+  flag (`corroborated`, `single`, `conflict`), three class levels and the
+  record identifiers behind the call. 3,283 compounds have an A or B call.
+- `get_l1000_annotation_catalog("chem")`, `annotate_l1000_result()`,
+  `build_l1000_annotation_tables()` and `write_l1000_annotation_tables()` use
+  the 3.0.1 call by default; chem summaries are now `broad_class_summary`,
+  `family_class_summary` and `target_class_summary`. The earlier catalog is
+  available with `version = "legacy"`.
+- `get_chem_family_catalog()`, `annotate_chem_families()` and
+  `verify_chem_family_catalogs()` default to taxonomy 3.0.1. The v2 families
+  are kept and every membership is graded (`A` rule met and two sources agree;
+  `B` curated v2 member not contradicted; `C` single source; `U` contradicted).
+  The default `evidence_tier = c("A", "B")` keeps all curated v2 members and
+  adds corroborated new ones. `MICROTUBULE_TARGETING` joins the two microtubule
+  families, whose split the databases do not record. New components:
+  `term_annotation` and `evidence`. The frozen v2 taxonomy remains available
+  with `version = "2.0.0"`.
+- Version 3.0.1 applies author decisions on top of the database rules
+  (`get_chem_family_catalog("curation_log")`). Mubritinib, recorded as an
+  ERBB2 inhibitor in ChEMBL and LINCS, is assigned to mitochondrial complex I
+  (Baccelli et al., Cancer Cell 2019; Stephenson et al., eLife 2020) and
+  removed from `ERBB_TKI_CORE`. Gene symbols that are aliases of several genes
+  are no longer resolved to the first one; LINCS `ND1` is read as `MT-ND1`.
+- The 3.0.1 data files are released under CC BY-SA 4.0 (adapted from ChEMBL
+  and the Guide to PHARMACOLOGY); see
+  `inst/extdata/annotation_catalogs/v3/LICENSE_DATA.md`. No LINCS source text
+  is redistributed.
+
+## Plotting
+
+- New plotting functions draw an L1000PAI result in one visual language: colour
+  means direction only, and explanations are drawn inside the figure. Every
+  function returns a ggplot or patchwork object, attaches the values drawn as
+  `attr(p, "plot_data")` and a recommended size used by `pai_save()`. See
+  `?pai_plotting`.
+- Targets: `pai_dotplot()`, `pai_armplot()`, `pai_gseaplot()`,
+  `pai_evidence_card()`, `pai_compareplot()`, `pai_cnetplot()`,
+  `pai_familyplot()` and the one-page `pai_report()`.
+- Pathways: `pai_enrich()` tests the Activated and the Inhibited targets
+  separately against GO, KEGG, Reactome, the Elsevier Pathway Collection or a
+  GMT file, with the scored targets as background; `pai_gsea_pathways()` ranks
+  all scored targets by activity score. Plots: `pai_enrichplot()`,
+  `pai_pathwayplot()`, the GOplot-style `pai_gobubble()`, `pai_gobar()`,
+  `pai_gocircle()`, `pai_gochord()`, `pai_goheat()`, `pai_govenn()` and
+  `pai_gocluster()`, and the two-arm displays `pai_armmap()`, `pai_ladder()`
+  and `pai_term_cnetplot()`. Pathway plots take the result of `pai_enrich()`.
+- Hubs: `pai_enrich_hubs()` groups redundant terms into modules;
+  `pai_hubplot()`, `pai_chordplot()`, `pai_enrich_cnetplot()` and
+  `pai_emapplot()` draw them.
+- Style: `theme_pai()`, `pai_use_palette()`, `pai_style_guide()` and
+  `pai_save()`; fonts are set with `options(pai.font = , pai.mono = )`.
+- Save PDF files with `pai_save()` or another cairo device
+  (`ggsave(..., device = cairo_pdf)`): the labels use arrows, a dagger and the
+  greater-or-equal sign, which the base `pdf()` device replaces with dots.
+- `n` means the top n everywhere. For `pai_evidence_card()` it is the number of
+  rows in total, shared between the two directions in proportion to their
+  numbers of calls.
+- The z-score of the GOplot-style displays defaults to a balanced z-score that
+  allows for the different sizes of the two call lists (`z = "goplot"` gives
+  GOplot's).
+
+## Dependencies
+
+- `ggplot2` (>= 4.0.0), `patchwork`, `scales`, `ggnewscale`, `ggrepel`,
+  `ggforce`, `igraph`, `GO.db` and `digest` are now in `Imports`; all of them
+  are already installed with `clusterProfiler`.
+
+---
+
 # L1000PAI 1.0.0
 
 First public release. It contains the 0.3 development series below.
-
-## Candidate revision 2 (unreleased)
-
-- Sample-level scoring rejects duplicated gene identifiers instead of selecting
-  different rows in single-sample and cohort runs. Fix gene mapping upstream.
-- Corrected `method = "ssgsea"` to use within-sample rank weights, with a
-  rank-weighted reference walk and shift/scale-invariance regression tests.
-  Scores from the former raw-expression-weighted implementation must be
-  recomputed; they are not numerically interchangeable with this correction.
-- Added sample/cohort and gene-row-order invariance checks with a fixed gene
-  universe and random seed. Cross-platform predictive validity is not implied.
-  Canonical gene ordering can change historical seeded null draws even when
-  raw rank-mean scores are unchanged; recompute previous sample-level outputs.
-- Added explicit handling of constant samples and degenerate enrichment sets.
-- Paired GSEA tables containing missing NES retain unknown scores and states
-  without aborting estimable pairs; unknown directions are not discordance.
-- The current data provider validates a requested cached library before reading
-  it. The companion dependency for release installation/CI is pinned to v1.0.0.
-- This candidate has not been published or tagged. Candidate package versions
-  remain 1.0.0; use the delivery SHA256 manifest to distinguish revisions.
 
 ## Signature libraries
 

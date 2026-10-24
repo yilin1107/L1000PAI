@@ -55,3 +55,23 @@ The core package must not estimate null covariance from observed perturbagen
 rows or silently treat Up and Down as independent. When synchronized null draws
 are unavailable, strict activity calls use directional conjunction evidence and
 the legacy NES difference remains available for ranking.
+
+## Plotting boundary
+
+The plotting functions (`R/plot_*.R`, `R/pathway_enrichment.R`) draw what the
+package computes and nothing else: every plot attaches the values it draws as
+`attr(p, "plot_data")`, so a figure can be checked against the result table.
+Gene-set collections for `pai_enrich()` are kept in the user cache with their
+source, version and SHA-256; they are never bundled. Figure layouts made for a
+particular paper belong to `L1000PAI-analysis`.
+
+## Report boundary
+
+`pai_deg_report()` (`R/deg_report.R`) composes the package's own scoring,
+pathway, annotation and plotting functions into a PDF report and an Excel
+workbook; it adds no statistics of its own beyond the checks it reports. It
+reads two small reference files from `inst/extdata/report`, documented with
+their sources and SHA-256 in the README there and rebuilt by the scripts in
+`data-raw/report`: the common-hit percentiles of the Chem library over 12
+public GEO perturbation contrasts, and the MSigDB Hallmark E2F targets and G2M checkpoint
+gene sets (CC BY 4.0), the only gene sets the package ships.

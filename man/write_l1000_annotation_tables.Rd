@@ -4,7 +4,13 @@
 \alias{write_l1000_annotation_tables}
 \title{Write packaged annotation tables to disk}
 \usage{
-write_l1000_annotation_tables(x, out_dir, library = NULL, prefix = NULL)
+write_l1000_annotation_tables(
+  x,
+  out_dir,
+  library = NULL,
+  prefix = NULL,
+  version = NULL
+)
 }
 \arguments{
 \item{x}{An \code{L1000PAIResult} object or a result data.frame.}
@@ -15,6 +21,9 @@ write_l1000_annotation_tables(x, out_dir, library = NULL, prefix = NULL)
 object.}
 
 \item{prefix}{Optional filename prefix. Defaults to the library name.}
+
+\item{version}{For \code{chem} results: annotation version, \code{"3.0.1"} (default)
+or \code{"legacy"}.}
 }
 \value{
 Invisibly returns the named list of tables that were written.

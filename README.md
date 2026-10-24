@@ -22,15 +22,10 @@ The package supports:
 
 ## Installation
 
-For a published 1.0.0 release, use the versioned tags below. An
-unpublished candidate can instead be installed from its two source
-tarballs (data package first); retain the accompanying SHA256 manifest
-to identify the exact revision.
-
 ``` r
 # install.packages("remotes")
-remotes::install_github("yilin1107/L1000PAIdata@v1.0.0")
-remotes::install_github("yilin1107/L1000PAI@v1.0.0")
+remotes::install_github("yilin1107/L1000PAIdata")
+remotes::install_github("yilin1107/L1000PAI")
 
 # Download and verify the CRISPR knockout and chemical perturbation libraries
 # (about 32 MB, once per machine):
@@ -48,11 +43,27 @@ L1000PAI analyses; see the [`L1000PAIdata`
 README](https://github.com/yilin1107/L1000PAIdata) for sources, terms of
 use and data citations.
 
-Public downloads cover CRISPR, Chem, and the kinase/GPCR Up, Down and
-combined files (five library IDs). Ligand, overexpression and
-single-drug libraries need verified local copies;
-`download_l1000pai_data("all")` does not provide those three local-only
-resources.
+## Quick start: one-call report
+
+`pai_deg_report()` turns a differential-expression table (limma, DESeq2 or
+edgeR output) into a PDF report of up to 19 pages written for readers who are not
+specialists, an Excel workbook with every table behind it, and an RDS file
+with the R objects. Gene symbols, Ensembl or Entrez IDs and the ranking
+statistic are recognised automatically; the L1000 libraries are downloaded on
+first use.
+
+```r
+library(L1000PAI)
+deg <- read.csv("treated_vs_control_limma.csv")   # one row per tested gene
+pai_deg_report(deg, contrast = "Treated vs control", out_dir = "L1000PAI_report")
+```
+
+Each page answers one question (Was the table read correctly? Which gene
+knockouts and which compounds does the contrast resemble? Which pathways? What
+should be checked before drawing conclusions?). Seven quality checks flag
+weak coverage, few calls, many Discordant pairs, a proliferation signal in the
+input, compounds that are common hits in unrelated perturbation experiments, and
+called genes absent from the input.
 
 ## Main ideas
 
@@ -92,22 +103,6 @@ Typical defaults are:
 
 For single-signature libraries, the package summarizes and classifies
 enrichment directly from a single `NES` per perturbagen.
-
-### Sample-level scores and candidate migration
-
-`score_samples_l1000pai()` is a separate within-sample estimator, not
-the preranked group-contrast GSEA test above. It requires unique gene
-identifiers, fixed preprocessing and the same measured gene universe
-when comparing scores. Duplicated gene identifiers and constant samples
-are rejected explicitly. The ssGSEA option uses rank-weighted
-enrichment, including deterministic tied rank handling. Results from the
-earlier raw-expression-weighted implementation must be recomputed; do
-not pool scores from the two implementations. Canonical gene ordering
-also changes the sequence of seeded null draws for some earlier inputs,
-so recalculate prior sample-level null-based outputs. Within-sample
-calculation does not by itself establish cross-platform predictive
-validity, drug sensitivity or clinical benefit. This software is for
-research.
 
 ## Core workflow
 
@@ -444,29 +439,100 @@ For single-signature libraries, default classes include:
 - `Negative_enrichment`
 - `Not_significant`
 
-## Versioned Chem-family taxonomy
+## Chem compound annotation (taxonomy 3.0.1)
 
-Chem family taxonomy v2 is packaged alongside, and does not replace, the
-legacy one-row-per-compound annotation catalog. The exact-term registry
-covers all 5,425 paired Chem perturbagens; 80 terms have mechanism-level
-curation in this release. Direct mechanisms (`direct_moa`) are kept
-separate from broader pathway context (`pathway_context`).
+Each of the 5,425 paired Chem perturbagens has a mechanism call built from
+public databases. The compound is matched by structure (LINCS 2020 InChIKey
+to ChEMBL), and its primary target genes and action are taken from the first
+of: ChEMBL drug mechanisms, the IUPHAR/BPS Guide to PHARMACOLOGY primary
+targets, the LINCS 2020 compound annotation, or ChEMBL bioactivity
+(pChEMBL >= 6.5 on human single proteins). Each call carries:
+
+- an evidence tier: `A` curated mechanism, `B` bioactivity only, `C`/`D` only
+  the earlier label, `U` unknown, `X` not a small molecule;
+- a confidence flag: `corroborated` when a second independent source agrees,
+  `single`, or `conflict`;
+- three class levels (`TargetClass`, `FamilyClass`, `BroadClass`) and the
+  record identifiers behind it.
+
+Where the databases are known to be wrong, an author decision replaces them
+and is listed in `get_chem_family_catalog("curation_log")` (for example,
+mubritinib is assigned to mitochondrial complex I rather than ERBB2).
 
 ``` r
-families <- get_chem_family_catalog("family_registry", version = "2.0.0")
+calls <- get_l1000_annotation_catalog("chem")            # one row per compound
+chem_tables <- build_l1000_annotation_tables(chem_result) # class summaries
+evidence <- get_chem_family_catalog("evidence")           # records per call
+```
 
+Strict mechanism families keep the curated v2 families and grade each
+membership: `A` the family rule is met and two sources agree; `B` a curated v2
+member that the new evidence does not contradict; `C` a single-source
+candidate; `U` a v2 member contradicted by the new evidence. The default
+`evidence_tier = c("A", "B")` keeps the first two.
+
+``` r
 chem_long <- annotate_chem_families(
   chem_result,
   family_level = "direct_moa",
   evidence_tier = c("A", "B")
 )
+verify_chem_family_catalogs()
 ```
 
-`annotate_chem_families()` returns a long many-to-many mapping and
-performs no family aggregation or enrichment. Downstream analyses should
-use the frozen `analysis_unit_id` to give aliases or members of one drug
-program a single vote. Unreviewed library terms remain explicit rather
-than receiving inferred mechanisms.
+`annotate_chem_families()` returns a long many-to-many mapping and performs no
+family aggregation or enrichment. Use the frozen `analysis_unit_id` downstream
+so aliases of one drug programme give a single vote. The earlier annotation
+stays available: `get_l1000_annotation_catalog("chem", version = "legacy")`
+and `annotate_chem_families(..., version = "2.0.0")`.
+
+## Plotting the results
+
+From version 1.1.0, plotting functions draw the calls, their two arms and the
+pathways enriched among the Activated and the Inhibited targets. Colour means
+direction only: Activated targets are warm, Inhibited targets cool and
+Discordant targets lavender diamonds. Every function returns a ggplot or
+patchwork object with the values drawn in `attr(p, "plot_data")` and a
+recommended size that `pai_save()` uses.
+
+``` r
+res <- run_l1000_pai(x = rank_input, library = "crispr")
+
+# targets
+pai_dotplot(res, n = 10)              # top calls in each direction
+pai_armplot(res, label = "TP53")      # both arms of every target
+pai_evidence_card(res, n = 20)        # result table with a two-arm glyph
+pai_gseaplot(res, "TP53")             # running sums of the two arms
+
+# pathways of the Activated and of the Inhibited targets
+e <- pai_enrich(res)                  # GO, KEGG, Reactome, Elsevier
+pai_gobubble(e)
+pai_gocircle(e, n = 10)
+pai_armmap(e, n = 8)                  # pathway members on the two arms
+pai_ladder(e, n = 20)                 # members' activity scores, pathway by pathway
+
+# hub genes of the Inhibited pathways
+h <- pai_enrich_hubs(e, direction = "Inhibited")
+pai_hubplot(h)
+
+p <- pai_gocircle(e, n = 20)
+pai_save(p, "gocircle_top20.pdf")     # saved at its recommended size
+```
+
+`n` always means the top n; `terms` and `targets` choose by name. The
+z-score of the GOplot-style displays defaults to a balanced z-score that allows
+for the different sizes of the two call lists; `z = "goplot"` gives GOplot's
+(up - down) / sqrt(n). `?pai_plotting` lists every function, and
+`pai_use_palette()` and `pai_style_guide()` show the colours.
+
+Save PDF files with `pai_save()` or `ggsave(..., device = cairo_pdf)`. The
+labels use arrows, a dagger and the greater-or-equal sign, which R's base
+`pdf()` device (the default of `ggsave()` for PDF files) replaces with dots.
+
+`pai_enrich()` builds GO sets from org.Hs.eg.db and downloads KEGG, Reactome
+and the Elsevier Pathway Collection from Enrichr on first use (Enrichr's terms
+of use apply); a GMT file of your own also works, for example
+`pai_enrich(res, collections = c(MySets = "my_sets.gmt"))`.
 
 ## Suggested downstream analyses
 
@@ -496,3 +562,16 @@ the [`L1000PAIdata` README](https://github.com/yilin1107/L1000PAIdata).
 The package code is released under the MIT license. The signature
 libraries are not part of the package and remain under the terms of
 their providers.
+
+The Chem taxonomy 3.0.1 data files in `inst/extdata/annotation_catalogs/v3`
+are adapted from ChEMBL (CC BY-SA 3.0) and the Guide to PHARMACOLOGY (ODbL /
+CC BY-SA 4.0) and are released under CC BY-SA 4.0; see `LICENSE_DATA.md` in
+that folder. Please cite ChEMBL and the Guide to PHARMACOLOGY when you use
+them.
+
+The MSigDB Hallmark E2F targets and G2M checkpoint gene sets in
+`inst/extdata/report`, used by the proliferation check of `pai_deg_report()`,
+are distributed by the Broad Institute under CC BY 4.0 (copyright 2004-2025
+Broad Institute); please cite Liberzon et al., Cell Systems 2015. The
+common-hit reference in the same folder is part of L1000PAI (MIT); that
+folder's `README.md` describes how it was made.

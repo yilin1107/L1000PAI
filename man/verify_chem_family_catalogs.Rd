@@ -7,7 +7,7 @@
 verify_chem_family_catalogs(
   verify_hash = FALSE,
   stop_on_error = TRUE,
-  version = "2.0.0"
+  version = "3.0.1"
 )
 }
 \arguments{
@@ -15,13 +15,15 @@ verify_chem_family_catalogs(
 
 \item{stop_on_error}{Stop when any check fails.}
 
-\item{version}{Chem-family taxonomy version.}
+\item{version}{Chem-family taxonomy version, \code{"3.0.1"} (default) or \code{"2.0.0"}.}
 }
 \value{
 A data.frame containing one row per integrity check.
 }
 \description{
 Runs schema, key, foreign-key, pair-coverage, alias-collapse and outcome-
-firewall checks. SHA-256 verification is optional because it requires the
-suggested \code{digest} package.
+firewall checks, plus version-specific checks (for 3.0.1: tier coding,
+complete per-term annotation, every direct family populated at the default
+tiers, and no LINCS source text in the evidence table). SHA-256 verification
+is optional because it requires the suggested \code{digest} package.
 }

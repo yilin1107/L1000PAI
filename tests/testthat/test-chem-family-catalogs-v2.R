@@ -1,10 +1,10 @@
 test_that("Chem family v2 catalogs satisfy frozen schema", {
-  term <- get_chem_family_catalog("term_registry")
-  family <- get_chem_family_catalog("family_registry")
-  membership <- get_chem_family_catalog("membership")
-  source <- get_chem_family_catalog("source_registry")
+  term <- get_chem_family_catalog("term_registry", version = "2.0.0")
+  family <- get_chem_family_catalog("family_registry", version = "2.0.0")
+  membership <- get_chem_family_catalog("membership", version = "2.0.0")
+  source <- get_chem_family_catalog("source_registry", version = "2.0.0")
 
-  expect_identical(available_chem_family_versions(), "2.0.0")
+  expect_setequal(available_chem_family_versions(), c("3.0.1", "2.0.0"))
   expect_equal(nrow(term), 5425L)
   expect_equal(sum(term$curation_status == "mechanism_curated_v2"), 80L)
   expect_identical(anyDuplicated(term$library_term_id), 0L)
@@ -22,7 +22,8 @@ test_that("Chem family v2 catalogs satisfy frozen schema", {
 test_that("Chem family v2 keeps outcome fields outside frozen taxonomy", {
   tables <- lapply(
     c("term_registry", "family_registry", "membership", "source_registry"),
-    get_chem_family_catalog
+    get_chem_family_catalog,
+    version = "2.0.0"
   )
   forbidden <- paste0(
     "(^|_)(activity_score|activity_gls_z|activity_class|nes(_up|_down)?|",
@@ -38,7 +39,7 @@ test_that("Chem family v2 keeps outcome fields outside frozen taxonomy", {
 })
 
 test_that("Chem family v2 freezes canonical analysis units", {
-  term <- get_chem_family_catalog("term_registry")
+  term <- get_chem_family_catalog("term_registry", version = "2.0.0")
   unit <- setNames(term$analysis_unit_id, term$library_term)
   preferred <- setNames(term$preferred_for_analysis, term$library_term)
 
@@ -64,12 +65,14 @@ test_that("direct mechanism and pathway context remain distinct", {
   direct <- annotate_chem_families(
     input,
     family_level = "direct_moa",
-    evidence_tier = c("A", "B")
+    evidence_tier = c("A", "B"),
+    version = "2.0.0"
   )
   context <- annotate_chem_families(
     input,
     family_level = "pathway_context",
-    evidence_tier = c("A", "B")
+    evidence_tier = c("A", "B"),
+    version = "2.0.0"
   )
 
   expect_true("ERBB_TKI_CORE" %in% direct$family_id[direct$compound_name == "Erlotinib"])
@@ -94,7 +97,8 @@ test_that("many-to-many family annotation does not select the first match", {
   annotated <- annotate_chem_families(
     input,
     family_level = "all",
-    evidence_tier = c("A", "B")
+    evidence_tier = c("A", "B"),
+    version = "2.0.0"
   )
 
   expect_gt(nrow(annotated), 1L)
@@ -106,13 +110,14 @@ test_that("many-to-many family annotation does not select the first match", {
 test_that("packaged Chem family v2 verification passes", {
   qa <- verify_chem_family_catalogs(
     verify_hash = requireNamespace("digest", quietly = TRUE),
-    stop_on_error = FALSE
+    stop_on_error = FALSE,
+    version = "2.0.0"
   )
   expect_true(all(qa$pass), info = paste(qa$check_id[!qa$pass], collapse = ", "))
 })
 
 test_that("legacy Chem annotation behavior remains one-to-one", {
-  legacy <- get_l1000_annotation_catalog("chem")
+  legacy <- get_l1000_annotation_catalog("chem", version = "legacy")
   expect_equal(nrow(legacy), 5425L)
   expect_identical(anyDuplicated(legacy$compound_name), 0L)
 
@@ -124,4 +129,6 @@ test_that("legacy Chem annotation behavior remains one-to-one", {
   )
   annotated <- annotate_l1000_result(input, library = "chem")
   expect_equal(nrow(annotated), 1L)
+  legacy_annotated <- annotate_l1000_result(input, library = "chem", version = "legacy")
+  expect_equal(nrow(legacy_annotated), 1L)
 })

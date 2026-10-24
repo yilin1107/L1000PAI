@@ -1,7 +1,7 @@
 Package: L1000PAI
 Title: Direction-Aware Perturbation Activity Inference from Ranked
     Transcriptomic Signatures
-Version: 1.0.0
+Version: 1.1.0
 Authors@R:
     person("Yilin", "Chiu", , "yilin1107@mail.ndmutsgh.edu.tw", role = c("aut", "cre"))
 Description: Infers the activity of genes and compounds from a ranked
@@ -13,7 +13,12 @@ Description: Infers the activity of genes and compounds from a ranked
     Single-signature libraries, covariance-aware joint scoring from
     synchronized null draws, sample-level scoring and versioned compound
     annotations are also provided, with helpers that turn ExpressionSet-based
-    differential expression results into ranked inputs.
+    differential expression results into ranked inputs. Plotting functions
+    draw the calls, their two arms and the pathways enriched among the
+    Activated and the Inhibited targets, ready to present. A single call,
+    pai_deg_report(), turns a differential-expression table into a PDF
+    report written for non-specialists and an Excel workbook of every table
+    behind it.
 License: MIT + file LICENSE
 URL: https://github.com/yilin1107/L1000PAI
 BugReports: https://github.com/yilin1107/L1000PAI/issues
@@ -26,6 +31,9 @@ Imports:
     methods,
     stats,
     utils,
+    grDevices,
+    grid,
+    tools,
     magrittr,
     dplyr,
     clusterProfiler,
@@ -33,18 +41,27 @@ Imports:
     Biobase,
     limma,
     AnnotationDbi,
-    org.Hs.eg.db
+    DBI,
+    org.Hs.eg.db,
+    GO.db,
+    digest,
+    ggplot2 (>= 4.0.0),
+    patchwork,
+    scales,
+    ggnewscale,
+    ggrepel,
+    ggforce,
+    igraph,
+    openxlsx,
+    zip
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
     BiocStyle,
-    L1000PAIdata (>= 1.0.0),
-    digest,
-    ggplot2,
-    ggrepel
+    L1000PAIdata (>= 1.0.0)
 Remotes:
-    yilin1107/L1000PAIdata@v1.0.0
+    yilin1107/L1000PAIdata
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 biocViews: GeneExpression, GeneSetEnrichment, Transcriptomics,

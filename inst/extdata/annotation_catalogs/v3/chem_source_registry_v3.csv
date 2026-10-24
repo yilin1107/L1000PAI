@@ -1,0 +1,28 @@
+source_id,citation,url,source_type,accessed_date,redistribution_status,taxonomy_version
+SRC_L1000_LIBRARY_TERM,LINCS L1000 Chem Perturbation Consensus Signatures (local provider artifact),,local_signature_library,2026-08-26,provider_artifact_not_redistributed,2.0.0
+SRC_CURATION_POLICY,L1000PAI Chem family v2 curation policy,,curation_policy,2026-08-26,project_authored,2.0.0
+SRC_NCI_IDASANUTLIN,NCI Drug Dictionary: idasanutlin,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/idasanutlin,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_ERLOTINIB,NCI Drug Dictionary: erlotinib hydrochloride,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/erlotinib-hydrochloride,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_SELUMETINIB,NCI Drug Dictionary: selumetinib,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/selumetinib,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_VEMURAFENIB,NCI Drug Dictionary: vemurafenib,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/vemurafenib,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_SIROLIMUS,NCI Drug Dictionary: sirolimus,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/sirolimus,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_PUBMED_AZD8055,Chresta et al. Cancer Research 2010: AZD8055,https://pubmed.ncbi.nlm.nih.gov/20028854/,primary_literature,2026-08-26,link_only,2.0.0
+SRC_PUBMED_NVP_BEZ235,Maira et al. Molecular Cancer Therapeutics 2008: NVP-BEZ235,https://pubmed.ncbi.nlm.nih.gov/18829560/,primary_literature,2026-08-26,link_only,2.0.0
+SRC_NCI_ZSTK474,NCI Drug Dictionary: PI3K inhibitor ZSTK474,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/pi3k-inhibitor-zstk474,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_TANESPIMYCIN,NCI Drug Dictionary: tanespimycin,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/tanespimycin,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_IXAZOMIB,NCI Drug Dictionary: ixazomib citrate,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/ixazomib-citrate,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_PMC_ONX0914,ONX-0914 immunoproteasome review,https://pmc.ncbi.nlm.nih.gov/articles/PMC9688407/,peer_reviewed_review,2026-08-26,link_only,2.0.0
+SRC_NCI_ALISERTIB,NCI Drug Dictionary: alisertib,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/alisertib,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_DOCETAXEL,NCI Drug Dictionary: docetaxel,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/docetaxel,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_PUBMED_NOCODAZOLE,De Brabander et al. Cell Biology International Reports 1976: nocodazole,https://pubmed.ncbi.nlm.nih.gov/85702/,primary_literature,2026-08-26,link_only,2.0.0
+SRC_PUBCHEM_EQUILIN,PubChem Compound Summary: Equilin,https://pubchem.ncbi.nlm.nih.gov/compound/Equilin,government_database,2026-08-26,link_only,2.0.0
+SRC_FDA_STATIN,U.S. FDA cholesterol medicines guide,https://www.fda.gov/consumers/womens-health-topics/cholesterol-medicines-guide,regulatory_guidance,2026-08-26,link_only,2.0.0
+SRC_NCI_VANDETANIB,NCI Drug Dictionary: vandetanib,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/vandetanib,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_NCI_PONATINIB,NCI Drug Dictionary: ponatinib hydrochloride,https://www.cancer.gov/publications/dictionaries/cancer-drug/def/ponatinib-hydrochloride,government_drug_dictionary,2026-08-26,link_only,2.0.0
+SRC_V3_CHEMBL,"ChEMBL drug_mechanism, ChEMBL_37 (2026-05-01); Zdrazil B et al. Nucleic Acids Res 2024;52:D1180-D1192",https://www.ebi.ac.uk/chembl/,curated_mechanism_database,2026-10-24,CC BY-SA 3.0; attribution,3.0.1
+SRC_V3_CHEMBL_BIOACTIVITY,"ChEMBL activities (pChEMBL >= 6, assay confidence 9, no PubChem BioAssay), ChEMBL_37 (2026-05-01)",https://www.ebi.ac.uk/chembl/,bioactivity_database,2026-10-24,CC BY-SA 3.0; attribution,3.0.1
+SRC_V3_GTOPDB,IUPHAR/BPS Guide to PHARMACOLOGY GtoPdb 2026.3.1 (published 2026-10-12); Harding SD et al. Nucleic Acids Res 2024;52:D1438-D1449,https://www.guidetopharmacology.org/,curated_mechanism_database,2026-10-24,ODbL / CC BY-SA 4.0; attribution,3.0.1
+SRC_V3_LINCS2020,"LINCS 2020 compoundinfo (CLUE, Broad Institute); identifiers and derived calls only",https://clue.io/,curated_mechanism_database,2026-10-24,terms not confirmed; no source text redistributed,3.0.1
+SRC_V3_HGNC,HGNC complete set (HUGO Gene Nomenclature Committee),https://www.genenames.org/,gene_nomenclature,2026-10-24,CC0,3.0.1
+SRC_V3_AUTHOR_CURATION,"L1000PAI author curation (see chem_curation_log_v3.csv); PMID:31287994 (Baccelli et al., Cancer Cell 2019;36:84-99); PMID:32432547 (Stephenson et al., eLife 2020;9:e55845)",,author_curation,2026-10-24,project_authored,3.0.1
+SRC_V3_CURATION_POLICY,"L1000PAI Chem taxonomy 3.0 rules (evidence tiers, strict-family rules, legacy crosswalk)",,curation_policy,2026-10-24,project_authored,3.0.1

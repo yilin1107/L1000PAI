@@ -6,21 +6,33 @@
 \usage{
 get_chem_family_catalog(
   component = c("term_registry", "family_registry", "membership", "source_registry",
-    "manifest"),
-  version = "2.0.0"
+    "manifest", "term_annotation", "evidence", "curation_log"),
+  version = "3.0.1"
 )
 }
 \arguments{
 \item{component}{One of \code{term_registry}, \code{family_registry}, \code{membership},
-\code{source_registry}, or \code{manifest}.}
+\code{source_registry}, \code{manifest}, and for version 3.0.1 also
+\code{term_annotation}, \code{evidence} and \code{curation_log}.}
 
-\item{version}{Taxonomy version. Currently \verb{2.0.0}.}
+\item{version}{Taxonomy version, \code{"3.0.1"} (default) or \code{"2.0.0"}.}
 }
 \value{
 A data.frame containing the requested frozen taxonomy component.
 }
 \description{
-The v2 Chem-family taxonomy is separate from the legacy one-row-per-compound
+The Chem-family taxonomy is separate from the one-row-per-compound
 annotation catalog returned by \code{\link[=get_l1000_annotation_catalog]{get_l1000_annotation_catalog()}}. It stores a
-complete exact-term registry plus curated many-to-many family memberships.
+complete exact-term registry plus many-to-many family memberships.
+}
+\details{
+Version 3.0.1 (the default) keeps the v2 term registry and families, adds
+\code{MICROTUBULE_TARGETING}, and grades every membership: \code{A} the v3 family rule
+is met by a call that two independent sources support; \code{B} a curated v2
+member that v3 evidence does not contradict; \code{C} the rule is met by a
+single source only; \code{U} a v2 member contradicted by v3 evidence, or a
+membership removed by an author decision. It also provides the per-term v3
+call (\code{term_annotation}), the evidence records behind it (\code{evidence}) and
+the author decisions that override the database evidence (\code{curation_log}).
+Version 2.0.0 is the frozen v2 taxonomy.
 }

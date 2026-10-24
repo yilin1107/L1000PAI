@@ -9,7 +9,7 @@ annotate_chem_families(
   family_level = c("direct_moa", "pathway_context", "all"),
   evidence_tier = c("A", "B"),
   include_unmapped = TRUE,
-  version = "2.0.0"
+  version = "3.0.1"
 )
 }
 \arguments{
@@ -18,12 +18,15 @@ annotate_chem_families(
 
 \item{family_level}{One of \code{direct_moa}, \code{pathway_context}, or \code{all}.}
 
-\item{evidence_tier}{Membership evidence tiers to retain. Defaults to A and B.}
+\item{evidence_tier}{Membership evidence tiers to retain. Defaults to A and
+B. In version 3.0.1 this keeps memberships supported by two independent
+sources (A) and curated v2 memberships that v3 evidence does not
+contradict (B); add \code{"C"} for single-source candidates.}
 
 \item{include_unmapped}{If \code{TRUE}, retain input rows without a membership at
 the requested level.}
 
-\item{version}{Chem-family taxonomy version.}
+\item{version}{Chem-family taxonomy version, \code{"3.0.1"} (default) or \code{"2.0.0"}.}
 }
 \value{
 A long-format data.frame. A result can occur more than once when its

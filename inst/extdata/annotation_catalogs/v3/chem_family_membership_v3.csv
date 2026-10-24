@@ -1,0 +1,431 @@
+analysis_unit_id,family_id,membership_role,pharmacologic_action,selectivity_class,evidence_tier,source_id,curation_status,taxonomy_version,v3_primary_genes,v3_call_tier,v3_confidence
+CHEM_V2_00647,AURORA_KINASE_INHIBITOR,primary,AURKB inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,AURKB,A,corroborated
+CHEM_V2_01939,AURORA_KINASE_INHIBITOR,primary,AURKB/AURKC inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,AURKB|AURKC,A,corroborated
+CHEM_V2_02862,AURORA_KINASE_INHIBITOR,primary,AURKA inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,AURKA,A,corroborated
+CHEM_V2_03515,AURORA_KINASE_INHIBITOR,primary,AURKA/AURKB inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,AURKA|AURKB,A,corroborated
+CHEM_V2_03989,AURORA_KINASE_INHIBITOR,primary,AURKB inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,AURKB,A,corroborated
+CHEM_V2_04501,AURORA_KINASE_INHIBITOR,primary,AURKA/AURKB/AURKC inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+CHEM_V2_05382,AURORA_KINASE_INHIBITOR,primary,AURKA/AURKB inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,AURKA|AURKB,A,corroborated
+CHEM_V2_05412,AURORA_KINASE_INHIBITOR,primary,AURKB inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,AURKB,A,corroborated
+UNIT_ALISERTIB,AURORA_KINASE_INHIBITOR,primary,Aurora kinase inhibition,AURKA_to_pan_Aurora,A,SRC_NCI_ALISERTIB,v3_rule_corroborated,3.0.1,AURKA,A,corroborated
+UNIT_AMG_900,AURORA_KINASE_INHIBITOR,primary,Aurora kinase inhibition,AURKA_to_pan_Aurora,A,SRC_NCI_ALISERTIB,v3_rule_corroborated,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+UNIT_DANUSERTIB,AURORA_KINASE_INHIBITOR,primary,Aurora kinase inhibition,AURKA_to_pan_Aurora,A,SRC_NCI_ALISERTIB,v3_rule_corroborated,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+UNIT_MLN_8054,AURORA_KINASE_INHIBITOR,primary,Aurora kinase inhibition,AURKA_to_pan_Aurora,A,SRC_NCI_ALISERTIB,v3_rule_corroborated,3.0.1,AURKA,A,corroborated
+UNIT_TOZASERTIB,AURORA_KINASE_INHIBITOR,primary,Aurora kinase inhibition,AURKA_to_pan_Aurora,A,SRC_NCI_ALISERTIB,v3_rule_corroborated,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+UNIT_AT_9283,AURORA_KINASE_INHIBITOR,primary,Aurora kinase inhibition,AURKA_to_pan_Aurora,B,SRC_NCI_ALISERTIB,curated_v2_retained,3.0.1,ABL1|AURKA|AURKB|FLT3|JAK2|JAK3,A,corroborated
+CHEM_V2_02389,AURORA_KINASE_INHIBITOR,primary,AURKA inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,AURKA,A,single
+CHEM_V2_02417,AURORA_KINASE_INHIBITOR,primary,AURKA inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,AURKA,B,single
+CHEM_V2_01034,CHOLESTEROL_BIOSYNTHESIS,context,HMGCR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+CHEM_V2_03098,CHOLESTEROL_BIOSYNTHESIS,context,HMGCR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_ATORVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_LOVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_PITAVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_PRAVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_ROSUVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_SIMVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,corroborated
+UNIT_FLUVASTATIN,CHOLESTEROL_BIOSYNTHESIS,context,HMG-CoA reductase inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_HMGCR_INHIBITOR_STATIN,3.0.1,HMGCR,A,single
+CHEM_V2_00177,CLASS_I_PI3K_INHIBITOR,primary,PIK3CG inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,PIK3CG,A,corroborated
+CHEM_V2_00223,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_00321,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA,A,corroborated
+CHEM_V2_00785,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01167,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CD inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CD,A,corroborated
+CHEM_V2_01903,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01948,CLASS_I_PI3K_INHIBITOR,primary,PIK3CB inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CB,A,corroborated
+CHEM_V2_02210,CLASS_I_PI3K_INHIBITOR,primary,PIK3CD/PIK3CG inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CD|PIK3CG,A,corroborated
+CHEM_V2_02234,CLASS_I_PI3K_INHIBITOR,primary,PIK3CD inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CD,A,corroborated
+CHEM_V2_03547,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,PIK3CA,A,corroborated
+CHEM_V2_03716,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_04782,CLASS_I_PI3K_INHIBITOR,primary,PIK3CD/PIK3CG inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CD|PIK3CG,A,corroborated
+CHEM_V2_04787,CLASS_I_PI3K_INHIBITOR,primary,PIK3CB inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,PIK3CB,A,corroborated
+CHEM_V2_05316,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CD/PIK3CG inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CD|PIK3CG,A,corroborated
+UNIT_GSK_1059615,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_TASELISIB,CLASS_I_PI3K_INHIBITOR,primary,class I PI3K inhibition,PI3K,A,SRC_NCI_ZSTK474,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_ZSTK_474,CLASS_I_PI3K_INHIBITOR,primary,class I PI3K inhibition,PI3K,A,SRC_NCI_ZSTK474,v3_rule_corroborated,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_00087,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,PIK3CA,B,single
+CHEM_V2_00176,CLASS_I_PI3K_INHIBITOR,primary,PIK3CG inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,PIK3CG,A,single
+CHEM_V2_03872,CLASS_I_PI3K_INHIBITOR,primary,PIK3CG inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,PIK3CG,A,single
+CHEM_V2_04379,CLASS_I_PI3K_INHIBITOR,primary,PIK3CA/PIK3CD/PIK3CG inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,PIK3CA|PIK3CD|PIK3CG,B,single
+UNIT_BORTEZOMIB,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,constitutive proteasome inhibition,constitutive_proteasome,A,SRC_NCI_IXAZOMIB,v3_rule_corroborated,3.0.1,ADRM1|PSMA1|PSMA2|PSMA3|PSMA4|PSMA5|PSMA6|PSMA7|PSMA8|PSMB1|PSMB10|PSMB11|PSMB2|PSMB3|PSMB4|PSMB5|PSMB6|PSMB7|PSMB8|PSMB9|PSMC1|PSMC2|PSMC3|PSMC4|PSMC5|PSMC6|PSMD1|PSMD11|PSMD12|PSMD13|PSMD14|PSMD2|PSMD3|PSMD4|PSMD6|PSMD7|PSMD8|SEM1,A,corroborated
+UNIT_CARFILZOMIB,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,constitutive proteasome inhibition,constitutive_proteasome,A,SRC_NCI_IXAZOMIB,v3_rule_corroborated,3.0.1,ADRM1|PSMA1|PSMA2|PSMA3|PSMA4|PSMA5|PSMA6|PSMA7|PSMA8|PSMB1|PSMB10|PSMB11|PSMB2|PSMB3|PSMB4|PSMB5|PSMB6|PSMB7|PSMB8|PSMB9|PSMC1|PSMC2|PSMC3|PSMC4|PSMC5|PSMC6|PSMD1|PSMD11|PSMD12|PSMD13|PSMD14|PSMD2|PSMD3|PSMD4|PSMD6|PSMD7|PSMD8|SEM1,A,corroborated
+UNIT_IXAZOMIB_PROGRAM,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,constitutive proteasome inhibition,constitutive_proteasome,A,SRC_NCI_IXAZOMIB,v3_rule_corroborated,3.0.1,ADRM1|PSMA1|PSMA2|PSMA3|PSMA4|PSMA5|PSMA6|PSMA7|PSMA8|PSMB1|PSMB10|PSMB11|PSMB2|PSMB3|PSMB4|PSMB5|PSMB6|PSMB7|PSMB8|PSMB9|PSMC1|PSMC2|PSMC3|PSMC4|PSMC5|PSMC6|PSMD1|PSMD11|PSMD12|PSMD13|PSMD14|PSMD2|PSMD3|PSMD4|PSMD6|PSMD7|PSMD8|SEM1,A,corroborated
+UNIT_MG_132,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,PSMB1 inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,PSMB1,A,corroborated
+UNIT_DELANZOMIB,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,constitutive proteasome inhibition,constitutive_proteasome,B,SRC_NCI_IXAZOMIB,curated_v2_retained,3.0.1,PSMB10|PSMB5|PSMB8|PSMB9,B,single
+UNIT_OPROZOMIB,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,constitutive proteasome inhibition,constitutive_proteasome,B,SRC_NCI_IXAZOMIB,curated_v2_retained,3.0.1,,D,
+CHEM_V2_01613,CONSTITUTIVE_PROTEASOME_INHIBITOR,primary,ADAMTS4/ADAMTS5/BCL2/DYRK1A/ELAVL3/PSMB5/RAD52 binder,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,ADAMTS4|ADAMTS5|BCL2|DYRK1A|ELAVL3|PSMB5|RAD52,B,single
+CHEM_V2_00558,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01900,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_01904,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_03521,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_03522,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_03554,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA,A,corroborated
+CHEM_V2_04396,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_05272,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_DACTOLISIB,DUAL_PI3K_MTOR_INHIBITOR,primary,dual PI3K and mTOR inhibition,dual_target,A,SRC_PUBMED_NVP_BEZ235,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_PI_103,DUAL_PI3K_MTOR_INHIBITOR,primary,dual PI3K and mTOR inhibition,dual_target,A,SRC_PUBMED_NVP_BEZ235,v3_rule_corroborated,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG,A,corroborated
+UNIT_GSK_1059615,DUAL_PI3K_MTOR_INHIBITOR,primary,dual PI3K and mTOR inhibition,dual_target,B,SRC_PUBMED_NVP_BEZ235,curated_v2_retained,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01910,DUAL_PI3K_MTOR_INHIBITOR,primary,MTOR/PIK3CA inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,MTOR|PIK3CA,B,single
+CHEM_V2_00173,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_00185,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_00198,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_00230,ERBB_RTK_AXIS,context,EGFR/ERBB2/ERBB3 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2|ERBB3,A,corroborated
+CHEM_V2_00231,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_00566,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_00567,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_00598,ERBB_RTK_AXIS,context,EGFR/ERBB2/ERBB4 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+CHEM_V2_00905,ERBB_RTK_AXIS,context,ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,ERBB2,A,corroborated
+CHEM_V2_01512,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_01975,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_03633,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_04041,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_04761,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_05302,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+CHEM_V2_05304,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+UNIT_AFATINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_CANERTINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_DACOMITINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_ERLOTINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+UNIT_GEFITINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+UNIT_LAPATINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,A,corroborated
+UNIT_NERATINIB,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_PD_158780,ERBB_RTK_AXIS,context,ERBB-family kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,corroborated
+UNIT_VANDETANIB,ERBB_RTK_AXIS,context,ERBB/RTK signaling perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|EPHA1|EPHA10|EPHA2|EPHA3|EPHA4|EPHA5|EPHA6|EPHA7|EPHA8|EPHB1|EPHB2|EPHB3|EPHB4|EPHB6|ERBB2|ERBB3|ERBB4|FLT1|FLT4|KDR|PTK6|RET|SRC|TEK,A,corroborated
+CHEM_V2_00112,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_00411,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_00731,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_00854,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_00856,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_01632,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_02076,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,B,single
+CHEM_V2_02615,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_02944,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_03497,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,B,single
+CHEM_V2_03502,ERBB_RTK_AXIS,context,EGFR/ERBB2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR|ERBB2,B,single
+CHEM_V2_03826,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,B,single
+CHEM_V2_03904,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_04581,ERBB_RTK_AXIS,context,ERBB2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,ERBB2,A,single
+CHEM_V2_05098,ERBB_RTK_AXIS,context,ERBB2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,ERBB2,A,single
+CHEM_V2_05100,ERBB_RTK_AXIS,context,EGFR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,EGFR,A,single
+CHEM_V2_03162,ERBB_RTK_AXIS,context,Mitochondrial complex I (NADH:ubiquinone oxidoreductase) inhibitor,pathway_context,U,SRC_V3_CURATION_POLICY,context_of_ERBB_TKI_CORE,3.0.1,COXFA4|COXFA4L2|MT-ND1|MT-ND2|MT-ND3|MT-ND4|MT-ND4L|MT-ND5|MT-ND6|NDUFA1|NDUFA10|NDUFA11|NDUFA12|NDUFA13|NDUFA2|NDUFA3|NDUFA5|NDUFA6|NDUFA7|NDUFA8|NDUFA9|NDUFAB1|NDUFAF1|NDUFAF2|NDUFAF3|NDUFAF4|NDUFB1|NDUFB10|NDUFB11|NDUFB2|NDUFB3|NDUFB4|NDUFB5|NDUFB6|NDUFB7|NDUFB8|NDUFB9|NDUFC1|NDUFC2|NDUFS1|NDUFS2|NDUFS3|NDUFS4|NDUFS5|NDUFS6|NDUFS7|NDUFS8|NDUFV1|NDUFV2|NDUFV3,A,author_curated
+CHEM_V2_00173,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_00185,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_00198,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_00230,ERBB_TKI_CORE,primary,EGFR/ERBB2/ERBB3 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR|ERBB2|ERBB3,A,corroborated
+CHEM_V2_00231,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_00566,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_00567,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_00598,ERBB_TKI_CORE,primary,EGFR/ERBB2/ERBB4 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+CHEM_V2_00905,ERBB_TKI_CORE,primary,ERBB2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,ERBB2,A,corroborated
+CHEM_V2_01512,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_01975,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_03633,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_04041,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_04761,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+CHEM_V2_05302,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_05304,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+UNIT_AFATINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_CANERTINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_DACOMITINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_ERLOTINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+UNIT_GEFITINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+UNIT_LAPATINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR|ERBB2,A,corroborated
+UNIT_NERATINIB,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_PD_158780,ERBB_TKI_CORE,primary,ERBB-family kinase inhibition,selective_to_pan_ERBB,A,SRC_NCI_ERLOTINIB,v3_rule_corroborated,3.0.1,EGFR,A,corroborated
+CHEM_V2_00112,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_00411,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_00731,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_00854,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_00856,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_01632,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_02076,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,EGFR,B,single
+CHEM_V2_02615,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_02944,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_03497,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,EGFR,B,single
+CHEM_V2_03502,ERBB_TKI_CORE,primary,EGFR/ERBB2 inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,EGFR|ERBB2,B,single
+CHEM_V2_03826,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,EGFR,B,single
+CHEM_V2_03904,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_04581,ERBB_TKI_CORE,primary,ERBB2 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,ERBB2,A,single
+CHEM_V2_05098,ERBB_TKI_CORE,primary,ERBB2 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,ERBB2,A,single
+CHEM_V2_05100,ERBB_TKI_CORE,primary,EGFR inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,EGFR,A,single
+CHEM_V2_03162,ERBB_TKI_CORE,primary,Mitochondrial complex I (NADH:ubiquinone oxidoreductase) inhibitor,author_curation,U,SRC_V3_AUTHOR_CURATION,author_override_excluded,3.0.1,COXFA4|COXFA4L2|MT-ND1|MT-ND2|MT-ND3|MT-ND4|MT-ND4L|MT-ND5|MT-ND6|NDUFA1|NDUFA10|NDUFA11|NDUFA12|NDUFA13|NDUFA2|NDUFA3|NDUFA5|NDUFA6|NDUFA7|NDUFA8|NDUFA9|NDUFAB1|NDUFAF1|NDUFAF2|NDUFAF3|NDUFAF4|NDUFB1|NDUFB10|NDUFB11|NDUFB2|NDUFB3|NDUFB4|NDUFB5|NDUFB6|NDUFB7|NDUFB8|NDUFB9|NDUFC1|NDUFC2|NDUFS1|NDUFS2|NDUFS3|NDUFS4|NDUFS5|NDUFS6|NDUFS7|NDUFS8|NDUFV1|NDUFV2|NDUFV3,A,author_curated
+CHEM_V2_01178,ESTROGENIC_ER_LIGAND,primary,ESR1/ESR2 agonist,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,ESR1|ESR2,A,corroborated
+CHEM_V2_01393,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,ESR1,A,corroborated
+CHEM_V2_01630,ESTROGENIC_ER_LIGAND,primary,ESR2 agonist,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,ESR2,A,corroborated
+CHEM_V2_01640,ESTROGENIC_ER_LIGAND,primary,ESR2 agonist,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,ESR2,A,corroborated
+CHEM_V2_03024,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,ESR1,A,corroborated
+CHEM_V2_03568,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,ESR1,A,corroborated
+UNIT_ESTRADIOL,ESTROGENIC_ER_LIGAND,primary,estrogen-receptor agonist signaling,estrogenic_ligand,A,SRC_PUBCHEM_EQUILIN,v3_rule_corroborated,3.0.1,ESR1,A,corroborated
+UNIT_ESTRONE,ESTROGENIC_ER_LIGAND,primary,estrogen-receptor agonist signaling,estrogenic_ligand,A,SRC_PUBCHEM_EQUILIN,v3_rule_corroborated,3.0.1,ESR1,A,corroborated
+UNIT_17ALPHA_ESTRADIOL,ESTROGENIC_ER_LIGAND,primary,estrogen-receptor agonist signaling,estrogenic_ligand,B,SRC_PUBCHEM_EQUILIN,curated_v2_retained,3.0.1,ESR1|ESR2|NR1I2,A,single
+UNIT_EQUILIN,ESTROGENIC_ER_LIGAND,primary,estrogen-receptor agonist signaling,estrogenic_ligand,B,SRC_PUBCHEM_EQUILIN,curated_v2_retained,3.0.1,HSD17B1,A,single
+CHEM_V2_01654,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,ESR1,A,single
+CHEM_V2_01659,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,C,SRC_V3_CHEMBL,v3_rule_single_source,3.0.1,ESR1,A,single
+CHEM_V2_02118,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,ESR1,A,single
+CHEM_V2_03824,ESTROGENIC_ER_LIGAND,primary,ESR1 agonist,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,ESR1,A,single
+CHEM_V2_01178,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1/ESR2 agonist,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1|ESR2,A,corroborated
+CHEM_V2_01393,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,corroborated
+CHEM_V2_01630,ESTROGEN_RECEPTOR_RESPONSE,context,ESR2 agonist,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR2,A,corroborated
+CHEM_V2_01640,ESTROGEN_RECEPTOR_RESPONSE,context,ESR2 agonist,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR2,A,corroborated
+CHEM_V2_03024,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,corroborated
+CHEM_V2_03568,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,corroborated
+UNIT_ESTRADIOL,ESTROGEN_RECEPTOR_RESPONSE,context,estrogen-receptor agonist signaling,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,corroborated
+UNIT_ESTRONE,ESTROGEN_RECEPTOR_RESPONSE,context,estrogen-receptor agonist signaling,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,corroborated
+UNIT_17ALPHA_ESTRADIOL,ESTROGEN_RECEPTOR_RESPONSE,context,estrogen-receptor agonist signaling,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1|ESR2|NR1I2,A,single
+UNIT_EQUILIN,ESTROGEN_RECEPTOR_RESPONSE,context,estrogen-receptor agonist signaling,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,HSD17B1,A,single
+CHEM_V2_01654,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,single
+CHEM_V2_01659,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,single
+CHEM_V2_02118,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,single
+CHEM_V2_03824,ESTROGEN_RECEPTOR_RESPONSE,context,ESR1 agonist,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_ESTROGENIC_ER_LIGAND,3.0.1,ESR1,A,single
+CHEM_V2_01034,HMGCR_INHIBITOR_STATIN,primary,HMGCR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+CHEM_V2_03098,HMGCR_INHIBITOR_STATIN,primary,HMGCR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_ATORVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,A,SRC_FDA_STATIN,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_LOVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,A,SRC_FDA_STATIN,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_PITAVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,A,SRC_FDA_STATIN,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_PRAVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,A,SRC_FDA_STATIN,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_ROSUVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,A,SRC_FDA_STATIN,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_SIMVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,A,SRC_FDA_STATIN,v3_rule_corroborated,3.0.1,HMGCR,A,corroborated
+UNIT_FLUVASTATIN,HMGCR_INHIBITOR_STATIN,primary,HMG-CoA reductase inhibition,statin,B,SRC_FDA_STATIN,curated_v2_retained,3.0.1,HMGCR,A,single
+CHEM_V2_00186,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90AA1/HSP90AB1 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_ALVESPIMYCIN,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_BIIB_021,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_GANETESPIB,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_GELDANAMYCIN,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1,A,corroborated
+UNIT_LUMINESPIB,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_PU_H71,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1,A,corroborated
+UNIT_TANESPIMYCIN,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_RADICICOL,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90 chaperone inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,,D,
+CHEM_V2_00829,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90AA1 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1,A,single
+CHEM_V2_02004,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90AA1 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1,A,single
+CHEM_V2_04502,HSP90_CHAPERONE_PROTEOSTASIS,context,HSP90AA1/HSP90AB1 binder,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_HSP90_INHIBITOR,3.0.1,HSP90AA1|HSP90AB1,B,single
+CHEM_V2_00186,HSP90_INHIBITOR,primary,HSP90AA1/HSP90AB1 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_ALVESPIMYCIN,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_BIIB_021,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_GANETESPIB,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_GELDANAMYCIN,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1,A,corroborated
+UNIT_LUMINESPIB,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_PU_H71,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1,A,corroborated
+UNIT_TANESPIMYCIN,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,A,SRC_NCI_TANESPIMYCIN,v3_rule_corroborated,3.0.1,HSP90AA1|HSP90AB1,A,corroborated
+UNIT_RADICICOL,HSP90_INHIBITOR,primary,HSP90 chaperone inhibition,direct,B,SRC_NCI_TANESPIMYCIN,curated_v2_retained,3.0.1,,D,
+CHEM_V2_00829,HSP90_INHIBITOR,primary,HSP90AA1 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,HSP90AA1,A,single
+CHEM_V2_02004,HSP90_INHIBITOR,primary,HSP90AA1 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,HSP90AA1,A,single
+CHEM_V2_04502,HSP90_INHIBITOR,primary,HSP90AA1/HSP90AB1 binder,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,HSP90AA1|HSP90AB1,B,single
+UNIT_ONX_0914,IMMUNOPROTEASOME_PSMB8_INHIBITOR,primary,PSMB8/LMP7 inhibition,immunoproteasome,B,SRC_PMC_ONX0914,curated_v2_retained,3.0.1,,D,
+UNIT_IDASANUTLIN,MDM2_ANTAGONIST,primary,MDM2-p53 interaction antagonism,direct,A,SRC_NCI_IDASANUTLIN,v3_rule_corroborated,3.0.1,MDM2|TP53,A,corroborated
+UNIT_NAVTEMADLIN,MDM2_ANTAGONIST,primary,MDM2-p53 interaction antagonism,direct,A,SRC_NCI_IDASANUTLIN,v3_rule_corroborated,3.0.1,MDM2|TP53,A,corroborated
+UNIT_NUTLIN_3,MDM2_ANTAGONIST,primary,MDM2-p53 interaction antagonism,direct,A,SRC_NCI_IDASANUTLIN,v3_rule_corroborated,3.0.1,MDM2,A,corroborated
+UNIT_CGM_097,MDM2_ANTAGONIST,primary,MDM2-p53 interaction antagonism,direct,B,SRC_NCI_IDASANUTLIN,curated_v2_retained,3.0.1,MDM2,B,single
+UNIT_RG7112,MDM2_ANTAGONIST,primary,MDM2-p53 interaction antagonism,direct,B,SRC_NCI_IDASANUTLIN,curated_v2_retained,3.0.1,,D,
+UNIT_SAR405838,MDM2_ANTAGONIST,primary,MDM2-p53 interaction antagonism,direct,B,SRC_NCI_IDASANUTLIN,curated_v2_retained,3.0.1,MDM2,A,single
+CHEM_V2_02082,MDM2_ANTAGONIST,primary,MDM2 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MDM2,A,single
+CHEM_V2_02843,MDM2_ANTAGONIST,primary,MDM2 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MDM2,A,single
+CHEM_V2_03911,MDM2_ANTAGONIST,primary,MDM2 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MDM2,A,single
+CHEM_V2_04475,MDM2_ANTAGONIST,primary,MDM4 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MDM4,A,single
+CHEM_V2_04638,MDM2_ANTAGONIST,primary,MDM2 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MDM2,A,single
+CHEM_V2_00178,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_00229,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_00874,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_03492,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_03505,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_03718,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_05018,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_05103,MEK1_2_INHIBITOR,primary,MAP2K1/MAP2K2 inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_BINIMETINIB,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,A,SRC_NCI_SELUMETINIB,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_COBIMETINIB,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,A,SRC_NCI_SELUMETINIB,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_REFAMETINIB,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,A,SRC_NCI_SELUMETINIB,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_RO_4987655,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,A,SRC_NCI_SELUMETINIB,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_SELUMETINIB,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,A,SRC_NCI_SELUMETINIB,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_TAK_733,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,A,SRC_NCI_SELUMETINIB,v3_rule_corroborated,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_PD_198306,MEK1_2_INHIBITOR,primary,MEK1/2 inhibition,direct,B,SRC_NCI_SELUMETINIB,curated_v2_retained,3.0.1,MAP2K1|MAP2K2,A,single
+CHEM_V2_03339,MEK1_2_INHIBITOR,primary,MAP2K1 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MAP2K1,A,single
+CHEM_V2_03508,MEK1_2_INHIBITOR,primary,MAP2K1 inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MAP2K1,A,single
+UNIT_NOCODAZOLE,MICROTUBULE_DESTABILIZER,primary,microtubule destabilization,direct,B,SRC_PUBMED_NOCODAZOLE,curated_v2_retained,3.0.1,,D,
+UNIT_PARBENDAZOLE,MICROTUBULE_DESTABILIZER,primary,microtubule destabilization,direct,B,SRC_PUBMED_NOCODAZOLE,curated_v2_retained,3.0.1,TUBB,A,single
+UNIT_DOCETAXEL,MICROTUBULE_STABILIZER,primary,microtubule stabilization,taxane,A,SRC_NCI_DOCETAXEL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+UNIT_CABAZITAXEL,MICROTUBULE_STABILIZER,primary,microtubule stabilization,taxane,B,SRC_NCI_DOCETAXEL,curated_v2_retained,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_00934,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_01158,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_02348,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_03602,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_05250,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_05253,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_05255,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+UNIT_DOCETAXEL,MICROTUBULE_TARGETING,primary,microtubule stabilization,taxane,A,SRC_NCI_DOCETAXEL,v3_rule_corroborated,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+UNIT_CABAZITAXEL,MICROTUBULE_TARGETING,primary,microtubule stabilization,taxane,B,SRC_NCI_DOCETAXEL,curated_v2_retained,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+UNIT_NOCODAZOLE,MICROTUBULE_TARGETING,primary,microtubule destabilization,direct,B,SRC_PUBMED_NOCODAZOLE,curated_v2_retained,3.0.1,,D,
+UNIT_PARBENDAZOLE,MICROTUBULE_TARGETING,primary,microtubule destabilization,direct,B,SRC_PUBMED_NOCODAZOLE,curated_v2_retained,3.0.1,TUBB,A,single
+CHEM_V2_00099,MICROTUBULE_TARGETING,primary,TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8/TUBB8B inhibitor,v3_rule,C,SRC_V3_CHEMBL,v3_rule_single_source,3.0.1,TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8|TUBB8B,A,single
+CHEM_V2_01223,MICROTUBULE_TARGETING,primary,TUBB inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,TUBB,A,single
+CHEM_V2_01470,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,C,SRC_V3_CHEMBL,v3_rule_single_source,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_01623,MICROTUBULE_TARGETING,primary,TUBB other,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,TUBB,A,single
+CHEM_V2_01802,MICROTUBULE_TARGETING,primary,TUBB inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,TUBB,A,single
+CHEM_V2_02259,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,C,SRC_V3_CHEMBL,v3_rule_single_source,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_03208,MICROTUBULE_TARGETING,primary,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,v3_rule,C,SRC_V3_CHEMBL,v3_rule_single_source,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_03452,MICROTUBULE_TARGETING,primary,TUBB inhibitor,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,TUBB,A,single
+CHEM_V2_00647,MITOTIC_SPINDLE_PERTURBATION,context,AURKB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKB,A,corroborated
+CHEM_V2_00934,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_01158,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_01939,MITOTIC_SPINDLE_PERTURBATION,context,AURKB/AURKC inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKB|AURKC,A,corroborated
+CHEM_V2_02348,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_02862,MITOTIC_SPINDLE_PERTURBATION,context,AURKA inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA,A,corroborated
+CHEM_V2_03515,MITOTIC_SPINDLE_PERTURBATION,context,AURKA/AURKB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA|AURKB,A,corroborated
+CHEM_V2_03602,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_03989,MITOTIC_SPINDLE_PERTURBATION,context,AURKB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKB,A,corroborated
+CHEM_V2_04501,MITOTIC_SPINDLE_PERTURBATION,context,AURKA/AURKB/AURKC inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+CHEM_V2_05250,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_05253,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_05255,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+CHEM_V2_05382,MITOTIC_SPINDLE_PERTURBATION,context,AURKA/AURKB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA|AURKB,A,corroborated
+CHEM_V2_05412,MITOTIC_SPINDLE_PERTURBATION,context,AURKB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKB,A,corroborated
+UNIT_ALISERTIB,MITOTIC_SPINDLE_PERTURBATION,context,Aurora kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA,A,corroborated
+UNIT_AMG_900,MITOTIC_SPINDLE_PERTURBATION,context,Aurora kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+UNIT_DANUSERTIB,MITOTIC_SPINDLE_PERTURBATION,context,Aurora kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+UNIT_DOCETAXEL,MITOTIC_SPINDLE_PERTURBATION,context,microtubule stabilization,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_STABILIZER,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,corroborated
+UNIT_MLN_8054,MITOTIC_SPINDLE_PERTURBATION,context,Aurora kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA,A,corroborated
+UNIT_TOZASERTIB,MITOTIC_SPINDLE_PERTURBATION,context,Aurora kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA|AURKB|AURKC,A,corroborated
+UNIT_AT_9283,MITOTIC_SPINDLE_PERTURBATION,context,Aurora kinase inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,ABL1|AURKA|AURKB|FLT3|JAK2|JAK3,A,corroborated
+UNIT_CABAZITAXEL,MITOTIC_SPINDLE_PERTURBATION,context,microtubule stabilization,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_STABILIZER,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+UNIT_NOCODAZOLE,MITOTIC_SPINDLE_PERTURBATION,context,microtubule destabilization,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_DESTABILIZER,3.0.1,,D,
+UNIT_PARBENDAZOLE,MITOTIC_SPINDLE_PERTURBATION,context,microtubule destabilization,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_DESTABILIZER,3.0.1,TUBB,A,single
+CHEM_V2_00099,MITOTIC_SPINDLE_PERTURBATION,context,TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8/TUBB8B inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8|TUBB8B,A,single
+CHEM_V2_01223,MITOTIC_SPINDLE_PERTURBATION,context,TUBB inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBB,A,single
+CHEM_V2_01470,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_01623,MITOTIC_SPINDLE_PERTURBATION,context,TUBB other,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBB,A,single
+CHEM_V2_01802,MITOTIC_SPINDLE_PERTURBATION,context,TUBB inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBB,A,single
+CHEM_V2_02259,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_02389,MITOTIC_SPINDLE_PERTURBATION,context,AURKA inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA,A,single
+CHEM_V2_02417,MITOTIC_SPINDLE_PERTURBATION,context,AURKA inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_AURORA_KINASE_INHIBITOR,3.0.1,AURKA,B,single
+CHEM_V2_03208,MITOTIC_SPINDLE_PERTURBATION,context,TUBA1A/TUBA1B/TUBA1C/TUBA3C/TUBA3E/TUBA4A/TUBB/TUBB1/TUBB2A/TUBB2B/TUBB3/TUBB4A/TUBB4B/TUBB6/TUBB8 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBA1A|TUBA1B|TUBA1C|TUBA3C|TUBA3E|TUBA4A|TUBB|TUBB1|TUBB2A|TUBB2B|TUBB3|TUBB4A|TUBB4B|TUBB6|TUBB8,A,single
+CHEM_V2_03452,MITOTIC_SPINDLE_PERTURBATION,context,TUBB inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MICROTUBULE_TARGETING,3.0.1,TUBB,A,single
+CHEM_V2_00215,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_01900,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_02447,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_02883,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_03608,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_05009,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_05010,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_05299,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_05300,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+UNIT_AZD_8055,MTOR_KINASE_INHIBITOR,primary,ATP-competitive mTOR kinase inhibition,mTORC1_2,A,SRC_PUBMED_AZD8055,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+UNIT_OSI_027,MTOR_KINASE_INHIBITOR,primary,ATP-competitive mTOR kinase inhibition,mTORC1_2,A,SRC_PUBMED_AZD8055,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+CHEM_V2_01550,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,MTOR,B,single
+CHEM_V2_02537,MTOR_KINASE_INHIBITOR,primary,MTOR modulator,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MTOR,A,single
+CHEM_V2_02538,MTOR_KINASE_INHIBITOR,primary,MTOR modulator,v3_rule,C,SRC_V3_LINCS2020,v3_rule_single_source,3.0.1,MTOR,A,single
+CHEM_V2_03565,MTOR_KINASE_INHIBITOR,primary,MTOR inhibitor,v3_rule,C,SRC_V3_CHEMBL_BIOACTIVITY,v3_rule_single_source,3.0.1,MTOR,B,single
+UNIT_IDASANUTLIN,P53_CHECKPOINT_RESPONSE,context,MDM2-p53 interaction antagonism,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2|TP53,A,corroborated
+UNIT_NAVTEMADLIN,P53_CHECKPOINT_RESPONSE,context,MDM2-p53 interaction antagonism,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2|TP53,A,corroborated
+UNIT_NUTLIN_3,P53_CHECKPOINT_RESPONSE,context,MDM2-p53 interaction antagonism,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,A,corroborated
+UNIT_CGM_097,P53_CHECKPOINT_RESPONSE,context,MDM2-p53 interaction antagonism,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,B,single
+UNIT_RG7112,P53_CHECKPOINT_RESPONSE,context,MDM2-p53 interaction antagonism,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,,D,
+UNIT_SAR405838,P53_CHECKPOINT_RESPONSE,context,MDM2-p53 interaction antagonism,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,A,single
+CHEM_V2_02082,P53_CHECKPOINT_RESPONSE,context,MDM2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,A,single
+CHEM_V2_02843,P53_CHECKPOINT_RESPONSE,context,MDM2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,A,single
+CHEM_V2_03911,P53_CHECKPOINT_RESPONSE,context,MDM2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,A,single
+CHEM_V2_04475,P53_CHECKPOINT_RESPONSE,context,MDM4 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM4,A,single
+CHEM_V2_04638,P53_CHECKPOINT_RESPONSE,context,MDM2 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MDM2_ANTAGONIST,3.0.1,MDM2,A,single
+CHEM_V2_00177,PI3K_AKT_MTOR_AXIS,context,PIK3CG inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CG,A,corroborated
+CHEM_V2_00215,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_00223,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_00321,PI3K_AKT_MTOR_AXIS,context,PIK3CA inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA,A,corroborated
+CHEM_V2_00558,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_00785,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01167,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CD inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CD,A,corroborated
+CHEM_V2_01319,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_RAPALOG_FKBP12_MTORC1,3.0.1,MTOR,A,corroborated
+CHEM_V2_01900,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_01903,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01904,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_01948,PI3K_AKT_MTOR_AXIS,context,PIK3CB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CB,A,corroborated
+CHEM_V2_02210,PI3K_AKT_MTOR_AXIS,context,PIK3CD/PIK3CG inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CD|PIK3CG,A,corroborated
+CHEM_V2_02234,PI3K_AKT_MTOR_AXIS,context,PIK3CD inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CD,A,corroborated
+CHEM_V2_02447,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_02883,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_03521,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_03522,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_03547,PI3K_AKT_MTOR_AXIS,context,PIK3CA inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA,A,corroborated
+CHEM_V2_03554,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA,A,corroborated
+CHEM_V2_03608,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_03716,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_04396,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_04782,PI3K_AKT_MTOR_AXIS,context,PIK3CD/PIK3CG inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CD|PIK3CG,A,corroborated
+CHEM_V2_04787,PI3K_AKT_MTOR_AXIS,context,PIK3CB inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CB,A,corroborated
+CHEM_V2_05009,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_05010,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_05272,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_05299,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_05300,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+CHEM_V2_05316,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CD/PIK3CG inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CD|PIK3CG,A,corroborated
+UNIT_AZD_8055,PI3K_AKT_MTOR_AXIS,context,ATP-competitive mTOR kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+UNIT_DACTOLISIB,PI3K_AKT_MTOR_AXIS,context,dual PI3K and mTOR inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_EVEROLIMUS,PI3K_AKT_MTOR_AXIS,context,FKBP12-dependent allosteric mTORC1 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_RAPALOG_FKBP12_MTORC1,3.0.1,FKBP1A,A,corroborated
+UNIT_GSK_1059615,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CB/PIK3CD/PIK3CG/PIK3R1/PIK3R2/PIK3R3/PIK3R5 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_OSI_027,PI3K_AKT_MTOR_AXIS,context,ATP-competitive mTOR kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,corroborated
+UNIT_PI_103,PI3K_AKT_MTOR_AXIS,context,dual PI3K and mTOR inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA|PIK3CB|PIK3CD|PIK3CG,A,corroborated
+UNIT_SIROLIMUS_RAPAMYCIN,PI3K_AKT_MTOR_AXIS,context,FKBP12-dependent allosteric mTORC1 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_RAPALOG_FKBP12_MTORC1,3.0.1,FKBP1A,A,corroborated
+UNIT_TASELISIB,PI3K_AKT_MTOR_AXIS,context,class I PI3K inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+UNIT_TEMSIROLIMUS,PI3K_AKT_MTOR_AXIS,context,FKBP12-dependent allosteric mTORC1 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_RAPALOG_FKBP12_MTORC1,3.0.1,FKBP1A,A,corroborated
+UNIT_ZSTK_474,PI3K_AKT_MTOR_AXIS,context,class I PI3K inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CB|PIK3CD|PIK3CG|PIK3R1|PIK3R2|PIK3R3|PIK3R5,A,corroborated
+CHEM_V2_00087,PI3K_AKT_MTOR_AXIS,context,PIK3CA inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA,B,single
+CHEM_V2_00176,PI3K_AKT_MTOR_AXIS,context,PIK3CG inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CG,A,single
+CHEM_V2_01550,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,B,single
+CHEM_V2_01910,PI3K_AKT_MTOR_AXIS,context,MTOR/PIK3CA inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_DUAL_PI3K_MTOR_INHIBITOR,3.0.1,MTOR|PIK3CA,B,single
+CHEM_V2_02537,PI3K_AKT_MTOR_AXIS,context,MTOR modulator,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,single
+CHEM_V2_02538,PI3K_AKT_MTOR_AXIS,context,MTOR modulator,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,A,single
+CHEM_V2_03565,PI3K_AKT_MTOR_AXIS,context,MTOR inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MTOR_KINASE_INHIBITOR,3.0.1,MTOR,B,single
+CHEM_V2_03872,PI3K_AKT_MTOR_AXIS,context,PIK3CG inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CG,A,single
+CHEM_V2_04379,PI3K_AKT_MTOR_AXIS,context,PIK3CA/PIK3CD/PIK3CG inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_CLASS_I_PI3K_INHIBITOR,3.0.1,PIK3CA|PIK3CD|PIK3CG,B,single
+CHEM_V2_01319,RAPALOG_FKBP12_MTORC1,primary,MTOR inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,MTOR,A,corroborated
+UNIT_EVEROLIMUS,RAPALOG_FKBP12_MTORC1,primary,FKBP12-dependent allosteric mTORC1 inhibition,rapalog,A,SRC_NCI_SIROLIMUS,v3_rule_corroborated,3.0.1,FKBP1A,A,corroborated
+UNIT_SIROLIMUS_RAPAMYCIN,RAPALOG_FKBP12_MTORC1,primary,FKBP12-dependent allosteric mTORC1 inhibition,rapalog,A,SRC_NCI_SIROLIMUS,v3_rule_corroborated,3.0.1,FKBP1A,A,corroborated
+UNIT_TEMSIROLIMUS,RAPALOG_FKBP12_MTORC1,primary,FKBP12-dependent allosteric mTORC1 inhibition,rapalog,A,SRC_NCI_SIROLIMUS,v3_rule_corroborated,3.0.1,FKBP1A,A,corroborated
+CHEM_V2_00178,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_00209,RAS_RAF_MEK_ERK_AXIS,context,BRAF/RAF1 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,BRAF|RAF1,A,corroborated
+CHEM_V2_00229,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_00874,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_01902,RAS_RAF_MEK_ERK_AXIS,context,BRAF inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,BRAF,A,corroborated
+CHEM_V2_02884,RAS_RAF_MEK_ERK_AXIS,context,ARAF/BRAF/RAF1 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,ARAF|BRAF|RAF1,A,corroborated
+CHEM_V2_03492,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_03505,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_03718,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_05018,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+CHEM_V2_05103,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1/MAP2K2 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_BINIMETINIB,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_COBIMETINIB,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_DABRAFENIB,RAS_RAF_MEK_ERK_AXIS,context,RAF kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,BRAF,A,corroborated
+UNIT_PLX_4720,RAS_RAF_MEK_ERK_AXIS,context,RAF kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,BRAF,A,corroborated
+UNIT_REFAMETINIB,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_RO_4987655,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_SELUMETINIB,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_TAK_733,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,corroborated
+UNIT_VEMURAFENIB,RAS_RAF_MEK_ERK_AXIS,context,RAF kinase inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,BRAF,A,corroborated
+UNIT_AFATINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_CANERTINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_DACOMITINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_ERLOTINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR,A,corroborated
+UNIT_GEFITINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR,A,corroborated
+UNIT_GW_5074,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,RAF1,A,corroborated
+UNIT_LAPATINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|ERBB2,A,corroborated
+UNIT_NERATINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|ERBB2|ERBB4,A,corroborated
+UNIT_PD_158780,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR,A,corroborated
+UNIT_PD_198306,RAS_RAF_MEK_ERK_AXIS,context,MEK1/2 inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1|MAP2K2,A,single
+UNIT_PONATINIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,ABL1|BCR,A,corroborated
+UNIT_RAF_265,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,BRAF|KDR,A,corroborated
+UNIT_REGORAFENIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,ABL1|BRAF|DDR2|EPHA2|FGFR1|FGFR2|FLT1|FLT4|FRK|KDR|KIT|MAPK11|NTRK1|PDGFRA|PDGFRB|RAF1|RET|TEK,A,corroborated
+UNIT_SB_590885,RAS_RAF_MEK_ERK_AXIS,context,RAF kinase inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_SELECTIVE_BRAF_INHIBITOR,3.0.1,BRAF,A,single
+UNIT_SORAFENIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,BRAF|FLT1|FLT3|FLT4|KDR|KIT|PDGFRB|RAF1|RET,A,corroborated
+UNIT_VANDETANIB,RAS_RAF_MEK_ERK_AXIS,context,MAPK-axis perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,EGFR|EPHA1|EPHA10|EPHA2|EPHA3|EPHA4|EPHA5|EPHA6|EPHA7|EPHA8|EPHB1|EPHB2|EPHB3|EPHB4|EPHB6|ERBB2|ERBB3|ERBB4|FLT1|FLT4|KDR|PTK6|RET|SRC|TEK,A,corroborated
+CHEM_V2_03339,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1,A,single
+CHEM_V2_03508,RAS_RAF_MEK_ERK_AXIS,context,MAP2K1 inhibitor,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_MEK1_2_INHIBITOR,3.0.1,MAP2K1,A,single
+CHEM_V2_00209,SELECTIVE_BRAF_INHIBITOR,primary,BRAF/RAF1 inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,BRAF|RAF1,A,corroborated
+CHEM_V2_01902,SELECTIVE_BRAF_INHIBITOR,primary,BRAF inhibitor,v3_rule,A,SRC_V3_LINCS2020,v3_rule_corroborated,3.0.1,BRAF,A,corroborated
+CHEM_V2_02884,SELECTIVE_BRAF_INHIBITOR,primary,ARAF/BRAF/RAF1 inhibitor,v3_rule,A,SRC_V3_CHEMBL,v3_rule_corroborated,3.0.1,ARAF|BRAF|RAF1,A,corroborated
+UNIT_DABRAFENIB,SELECTIVE_BRAF_INHIBITOR,primary,RAF kinase inhibition,selective_or_primary_RAF,A,SRC_NCI_VEMURAFENIB,v3_rule_corroborated,3.0.1,BRAF,A,corroborated
+UNIT_PLX_4720,SELECTIVE_BRAF_INHIBITOR,primary,RAF kinase inhibition,selective_or_primary_RAF,A,SRC_NCI_VEMURAFENIB,v3_rule_corroborated,3.0.1,BRAF,A,corroborated
+UNIT_VEMURAFENIB,SELECTIVE_BRAF_INHIBITOR,primary,RAF kinase inhibition,selective_or_primary_RAF,A,SRC_NCI_VEMURAFENIB,v3_rule_corroborated,3.0.1,BRAF,A,corroborated
+UNIT_SB_590885,SELECTIVE_BRAF_INHIBITOR,primary,RAF kinase inhibition,selective_or_primary_RAF,B,SRC_NCI_VEMURAFENIB,curated_v2_retained,3.0.1,BRAF,A,single
+UNIT_BORTEZOMIB,UBIQUITIN_PROTEASOME_AXIS,context,constitutive proteasome inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,ADRM1|PSMA1|PSMA2|PSMA3|PSMA4|PSMA5|PSMA6|PSMA7|PSMA8|PSMB1|PSMB10|PSMB11|PSMB2|PSMB3|PSMB4|PSMB5|PSMB6|PSMB7|PSMB8|PSMB9|PSMC1|PSMC2|PSMC3|PSMC4|PSMC5|PSMC6|PSMD1|PSMD11|PSMD12|PSMD13|PSMD14|PSMD2|PSMD3|PSMD4|PSMD6|PSMD7|PSMD8|SEM1,A,corroborated
+UNIT_CARFILZOMIB,UBIQUITIN_PROTEASOME_AXIS,context,constitutive proteasome inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,ADRM1|PSMA1|PSMA2|PSMA3|PSMA4|PSMA5|PSMA6|PSMA7|PSMA8|PSMB1|PSMB10|PSMB11|PSMB2|PSMB3|PSMB4|PSMB5|PSMB6|PSMB7|PSMB8|PSMB9|PSMC1|PSMC2|PSMC3|PSMC4|PSMC5|PSMC6|PSMD1|PSMD11|PSMD12|PSMD13|PSMD14|PSMD2|PSMD3|PSMD4|PSMD6|PSMD7|PSMD8|SEM1,A,corroborated
+UNIT_IXAZOMIB_PROGRAM,UBIQUITIN_PROTEASOME_AXIS,context,constitutive proteasome inhibition,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,ADRM1|PSMA1|PSMA2|PSMA3|PSMA4|PSMA5|PSMA6|PSMA7|PSMA8|PSMB1|PSMB10|PSMB11|PSMB2|PSMB3|PSMB4|PSMB5|PSMB6|PSMB7|PSMB8|PSMB9|PSMC1|PSMC2|PSMC3|PSMC4|PSMC5|PSMC6|PSMD1|PSMD11|PSMD12|PSMD13|PSMD14|PSMD2|PSMD3|PSMD4|PSMD6|PSMD7|PSMD8|SEM1,A,corroborated
+UNIT_MG_132,UBIQUITIN_PROTEASOME_AXIS,context,PSMB1 inhibitor,pathway_context,A,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,PSMB1,A,corroborated
+UNIT_DELANZOMIB,UBIQUITIN_PROTEASOME_AXIS,context,constitutive proteasome inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,PSMB10|PSMB5|PSMB8|PSMB9,B,single
+UNIT_ONX_0914,UBIQUITIN_PROTEASOME_AXIS,context,PSMB8/LMP7 inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_IMMUNOPROTEASOME_PSMB8_INHIBITOR,3.0.1,,D,
+UNIT_OPROZOMIB,UBIQUITIN_PROTEASOME_AXIS,context,constitutive proteasome inhibition,pathway_context,B,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,,D,
+UNIT_Z_LEU3_VS,UBIQUITIN_PROTEASOME_AXIS,context,ubiquitin-proteasome perturbation,pathway_context,B,SRC_CURATION_POLICY,curated_v2_retained,3.0.1,,D,
+CHEM_V2_01613,UBIQUITIN_PROTEASOME_AXIS,context,ADAMTS4/ADAMTS5/BCL2/DYRK1A/ELAVL3/PSMB5/RAD52 binder,pathway_context,C,SRC_V3_CURATION_POLICY,context_of_CONSTITUTIVE_PROTEASOME_INHIBITOR,3.0.1,ADAMTS4|ADAMTS5|BCL2|DYRK1A|ELAVL3|PSMB5|RAD52,B,single

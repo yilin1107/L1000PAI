@@ -182,7 +182,7 @@
 .default_category_table_name <- function(library) {
   switch(
     library,
-    chem = "big_class_summary",
+    chem = "broad_class_summary",
     ligand = "ligand_group_summary",
     kinase_gpcr = "signal_family_summary",
     NULL
@@ -219,6 +219,10 @@
       build_l1000_annotation_tables(x, library = lib)
     }
     category_table <- tables[[table_name]]
+    if (is.null(category_table) && identical(table_name, "broad_class_summary")) {
+      # results annotated before Chem taxonomy 3.0.1 carry the legacy summary
+      category_table <- tables[["big_class_summary"]]
+    }
     if (is.null(category_table)) {
       stop("Could not find category table `", table_name, "`.")
     }

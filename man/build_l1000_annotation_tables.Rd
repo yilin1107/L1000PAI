@@ -4,13 +4,18 @@
 \alias{build_l1000_annotation_tables}
 \title{Build packaged annotation tables from an L1000 result}
 \usage{
-build_l1000_annotation_tables(x, library = NULL)
+build_l1000_annotation_tables(x, library = NULL, version = NULL)
 }
 \arguments{
 \item{x}{An \code{L1000PAIResult} object or a result data.frame.}
 
 \item{library}{Optional library name when \code{x} is not an \code{L1000PAIResult}
 object.}
+
+\item{version}{For \code{chem} results: annotation version, \code{"3.0.1"} (default)
+or \code{"legacy"}. Version 3.0.1 summarizes by \code{BroadClass}, \code{FamilyClass}
+and \code{TargetClass}; \code{"legacy"} by \code{BigClass}, \code{MechanismClass} and
+\code{TargetFamily}.}
 }
 \value{
 A named list of data.frames.
