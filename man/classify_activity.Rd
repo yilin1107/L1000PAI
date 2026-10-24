@@ -9,7 +9,9 @@ classify_activity(
   activity_threshold = 1,
   p_value_threshold = 0.05,
   p_col = NULL,
-  score_direction = c("down_minus_up", "up_minus_down")
+  score_direction = c("down_minus_up", "up_minus_down"),
+  score_col = "activity_score",
+  require_coherent = TRUE
 )
 }
 \arguments{
@@ -22,13 +24,25 @@ activation/inhibition calls. Default is \code{1}.}
 p-value column. Default is \code{0.05}.}
 
 \item{p_col}{Name of the p-value column to use. If \code{NULL}, the function
-will use \code{"padj_combined"} when available, otherwise \code{"p_combined"}.}
+prefers \code{"padj_coherent"} when available, followed by
+\code{"padj_combined"} and \code{"p_combined"}.}
 
 \item{score_direction}{One of \code{"down_minus_up"} or \code{"up_minus_down"}.}
+
+\item{score_col}{Name of the activity-score column used for the effect-size
+threshold. The default preserves the legacy \code{"activity_score"}. Use
+\code{"activity_gls_z"} after \code{\link[=score_joint_activity]{score_joint_activity()}} for a standardized GLS
+threshold while retaining a conjunction p-value in \code{p_col}.}
+
+\item{require_coherent}{Logical; when \code{TRUE} (the default) and
+\code{padj_coherent} is available, that directional conjunction must also pass
+\code{p_value_threshold}. This prevents a global or legacy p-value supplied in
+\code{p_col} from replacing evidence that both signature arms are coherent.}
 }
 \value{
 A data.frame with added columns:
-\code{is_significant}, \code{direction_consistent}, and \code{activity_class}.
+\code{is_selected_significant}, \code{is_coherent_significant}, \code{is_significant},
+\code{direction_consistent}, and \code{activity_class}.
 }
 \description{
 Classify paired L1000 perturbation results into activity states based on

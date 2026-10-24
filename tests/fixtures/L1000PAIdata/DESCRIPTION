@@ -1,0 +1,9 @@
+Package: L1000PAIdata
+Title: Tiny Contract Fixture for L1000PAI Tests
+Version: 1.0.0
+Authors@R: person("Test", "Fixture", role = c("aut", "cre"), email = "fixture@example.invalid")
+Description: Provides tiny synthetic files that exercise the companion package
+    file contract in continuous integration. It contains no real L1000 data.
+License: MIT
+Encoding: UTF-8
+NeedsCompilation: no

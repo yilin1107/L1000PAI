@@ -1,0 +1,13 @@
+bibentry(
+  bibtype = "Manual",
+  title = "L1000PAI: Direction-Aware Perturbation Activity Inference from Ranked Transcriptomic Signatures",
+  author = person("Yilin", "Chiu"),
+  year = "2026",
+  note = "R package version 1.0.0",
+  url = "https://github.com/yilin1107/L1000PAI",
+  textVersion = paste(
+    "Chiu Y (2026). L1000PAI: Direction-Aware Perturbation Activity Inference",
+    "from Ranked Transcriptomic Signatures. R package version 1.0.0.",
+    "https://github.com/yilin1107/L1000PAI"
+  )
+)

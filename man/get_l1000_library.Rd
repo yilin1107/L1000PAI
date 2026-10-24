@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_l1000_library.R
 \name{get_l1000_library}
 \alias{get_l1000_library}
-\title{Get a bundled L1000 library from L1000PAIdata}
+\title{Get an L1000 library from L1000PAIdata}
 \usage{
 get_l1000_library(
   library = c("crispr", "chem", "ligand", "oe", "single_drug", "kinase_gpcr",
@@ -14,12 +14,15 @@ get_l1000_library(
 \item{library}{One of \code{available_l1000_libraries()}.}
 
 \item{package}{Name of the companion data package. Default is
-\code{"L1000PAIdata"}.}
+\code{"L1000PAIdata"}. Version 1.0.0 or newer is required for the default
+provider contract.}
 }
 \value{
 A two-column data.frame with columns \code{term} and \code{gene}.
 }
 \description{
-Load a bundled L1000 perturbation signature library distributed in the
-companion data package \code{L1000PAIdata}.
+Load an L1000 perturbation signature library provided by the companion
+package \code{L1000PAIdata}. Since \code{L1000PAIdata} 1.0.0 the libraries are not
+bundled: download and verify them once with
+\code{L1000PAIdata::download_l1000pai_data()}.
 }

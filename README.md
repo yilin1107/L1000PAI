@@ -4,7 +4,7 @@
 # L1000PAI
 
 `L1000PAI` is an R package for **direction-aware perturbation activity
-inference** from ranked transcriptomic signatures using L1000
+inference** from ranked transcriptomic signatures using L1000-style
 perturbation-signature libraries.
 
 The package supports:
@@ -13,24 +13,101 @@ The package supports:
 - **single-signature libraries** with one consensus signature per
   perturbagen
 - **one-step analysis** through `run_l1000_pai()`
-- **bundled perturbation libraries** via the companion data package
-  `L1000PAIdata`
+- **L1000 signature libraries** downloaded and verified by the companion
+  package `L1000PAIdata`
+- **ExpressionSet-to-rank pipeline** for direct use after transcriptomic
+  preprocessing
+- **library-aware score direction handling** for drug-like versus
+  target-activity libraries
 
 ## Installation
 
-``` r
-# install.packages("devtools")
-
-# install the main package
-# devtools::install("path/to/L1000PAI")
-```
-
-To use bundled perturbation libraries, also install the companion data
-package:
+For a published 1.0.0 release, use the versioned tags below. An
+unpublished candidate can instead be installed from its two source
+tarballs (data package first); retain the accompanying SHA256 manifest
+to identify the exact revision.
 
 ``` r
-# devtools::install("path/to/L1000PAIdata")
+# install.packages("remotes")
+remotes::install_github("yilin1107/L1000PAIdata@v1.0.0")
+remotes::install_github("yilin1107/L1000PAI@v1.0.0")
+
+# Download and verify the CRISPR knockout and chemical perturbation libraries
+# (about 32 MB, once per machine):
+L1000PAIdata::download_l1000pai_data(c("crispr", "chem"))
 ```
+
+`L1000PAI` depends on Bioconductor packages (`clusterProfiler`, `limma`,
+`Biobase`, `AnnotationDbi`, `org.Hs.eg.db`, `fgsea`). If they are
+missing, install them first with `BiocManager::install()`.
+
+The signature libraries are not distributed with either package.
+`L1000PAIdata` fetches them from their public source and accepts a file
+only when its content matches the reference release used for the
+L1000PAI analyses; see the [`L1000PAIdata`
+README](https://github.com/yilin1107/L1000PAIdata) for sources, terms of
+use and data citations.
+
+Public downloads cover CRISPR, Chem, and the kinase/GPCR Up, Down and
+combined files (five library IDs). Ligand, overexpression and
+single-drug libraries need verified local copies;
+`download_l1000pai_data("all")` does not provide those three local-only
+resources.
+
+## Main ideas
+
+`L1000PAI` supports two related perturbation-analysis settings.
+
+### 1. Paired libraries
+
+For paired libraries, perturbagen activity is summarized using a
+direction-aware score:
+
+- `NES_Down - NES_Up`
+- or `NES_Up - NES_Down`
+
+The direction is controlled by `score_direction` and can be resolved
+automatically according to the library type.
+
+Paired inference separates two statistical questions:
+
+- `padj_coherent` is the strict directional intersection-union test:
+  both Up and Down arms must support the same activity direction.
+- `activity_gls_z` and `p_gls_global` quantify a shared latent activity
+  when synchronized Up/Down null draws are supplied.
+
+The GLS p-value is deliberately not used as a replacement for
+`padj_coherent`. A strong single arm may support latent activity without
+proving that both arms are coherent. Legacy `activity_score`,
+`p_combined`, and `padj_combined` columns remain available for
+comparisons.
+
+Typical defaults are:
+
+- `crispr` -\> `down_minus_up`
+- `single_drug`, `chem`, `ligand`, `oe`, `kinase_gpcr` -\>
+  `up_minus_down`
+
+### 2. Single-signature libraries
+
+For single-signature libraries, the package summarizes and classifies
+enrichment directly from a single `NES` per perturbagen.
+
+### Sample-level scores and candidate migration
+
+`score_samples_l1000pai()` is a separate within-sample estimator, not
+the preranked group-contrast GSEA test above. It requires unique gene
+identifiers, fixed preprocessing and the same measured gene universe
+when comparing scores. Duplicated gene identifiers and constant samples
+are rejected explicitly. The ssGSEA option uses rank-weighted
+enrichment, including deterministic tied rank handling. Results from the
+earlier raw-expression-weighted implementation must be recomputed; do
+not pool scores from the two implementations. Canonical gene ordering
+also changes the sequence of seeded null draws for some earlier inputs,
+so recalculate prior sample-level null-based outputs. Within-sample
+calculation does not by itself establish cross-platform predictive
+validity, drug sensitivity or clinical benefit. This software is for
+research.
 
 ## Core workflow
 
@@ -69,6 +146,7 @@ res <- run_l1000_pai(
   stat_col = "stat",
   term2gene = term2gene_paired,
   library_mode = "paired",
+  score_direction = "down_minus_up",
   min_gs_size = 2,
   max_gs_size = 500,
   pvalue_cutoff = 1,
@@ -77,149 +155,18 @@ res <- run_l1000_pai(
   activity_threshold = 0.5,
   classify_p_value_threshold = 0.25
 )
-```
 
-    ## 
-
-``` r
 res
 ```
-
-    ## L1000PAIResult
-    ##   Ranked genes: 6 
-    ##   GSEA rows: 4 
-    ##   Final rows: 2 
-    ##   Library: user_supplied_term2gene 
-    ##   Mode: paired
 
 ### Extract results
 
 ``` r
 result_mode(res)
-```
-
-    ## [1] "paired"
-
-``` r
 head(gsea_table(res))
-```
-
-    ##                  term Description setSize enrichmentScore       NES    pvalue
-    ## DrugA_Up     DrugA_Up    DrugA_Up       2              -1 -2.163617 0.0910596
-    ## DrugB_Down DrugB_Down  DrugB_Down       2              -1 -2.163617 0.0910596
-    ## DrugA_Down DrugA_Down  DrugA_Down       2               1  2.143611 0.1098361
-    ## DrugB_Up     DrugB_Up    DrugB_Up       2               1  2.143611 0.1098361
-    ##             p.adjust    qvalue rank                     leading_edge
-    ## DrugA_Up   0.1098361 0.1098361    3  tags=100%, list=50%, signal=75%
-    ## DrugB_Down 0.1098361 0.1098361    3  tags=100%, list=50%, signal=75%
-    ## DrugA_Down 0.1098361 0.1098361    2 tags=100%, list=33%, signal=100%
-    ## DrugB_Up   0.1098361 0.1098361    2 tags=100%, list=33%, signal=100%
-    ##            core_enrichment
-    ## DrugA_Up             GeneF
-    ## DrugB_Down           GeneF
-    ## DrugA_Down     GeneA/GeneB
-    ## DrugB_Up       GeneA/GeneB
-
-``` r
 head(result_table(res))
-```
-
-    ##   perturbagen  term_Up Description_Up setSize_Up enrichmentScore_Up    NES_Up
-    ## 1       DrugA DrugA_Up       DrugA_Up          2                 -1 -2.163617
-    ## 2       DrugB DrugB_Up       DrugB_Up          2                  1  2.143611
-    ##   pvalue_Up p.adjust_Up rank_Up                  leading_edge_Up
-    ## 1 0.0910596   0.1098361       3  tags=100%, list=50%, signal=75%
-    ## 2 0.1098361   0.1098361       2 tags=100%, list=33%, signal=100%
-    ##   core_enrichment_Up  term_Down Description_Down setSize_Down
-    ## 1              GeneF DrugA_Down       DrugA_Down            2
-    ## 2        GeneA/GeneB DrugB_Down       DrugB_Down            2
-    ##   enrichmentScore_Down  NES_Down pvalue_Down p.adjust_Down rank_Down
-    ## 1                    1  2.143611   0.1098361     0.1098361         2
-    ## 2                   -1 -2.163617   0.0910596     0.1098361         3
-    ##                  leading_edge_Down core_enrichment_Down combined_stat
-    ## 1 tags=100%, list=33%, signal=100%          GeneA/GeneB            NA
-    ## 2  tags=100%, list=50%, signal=75%                GeneF            NA
-    ##   p_combined activity_score padj_combined is_significant direction_consistent
-    ## 1  0.1098361       4.307228     0.1098361           TRUE                 TRUE
-    ## 2  0.1098361      -4.307228     0.1098361           TRUE                 TRUE
-    ##   activity_class
-    ## 1      Activated
-    ## 2      Inhibited
-
-``` r
 pai_metadata(res)
 ```
-
-    ## $input_type
-    ## [1] "data.frame"
-    ## 
-    ## $library
-    ## [1] "user_supplied_term2gene"
-    ## 
-    ## $data_package
-    ## [1] "L1000PAIdata"
-    ## 
-    ## $requested_library_mode
-    ## [1] "paired"
-    ## 
-    ## $detected_library_mode
-    ## [1] "paired"
-    ## 
-    ## $library_mode_used
-    ## [1] "paired"
-    ## 
-    ## $n_ranked_genes
-    ## [1] 6
-    ## 
-    ## $n_term2gene_rows
-    ## [1] 8
-    ## 
-    ## $gsea_params
-    ## $gsea_params$exponent
-    ## [1] 1
-    ## 
-    ## $gsea_params$min_gs_size
-    ## [1] 2
-    ## 
-    ## $gsea_params$max_gs_size
-    ## [1] 500
-    ## 
-    ## $gsea_params$eps
-    ## [1] 1e-10
-    ## 
-    ## $gsea_params$pvalue_cutoff
-    ## [1] 1
-    ## 
-    ## $gsea_params$p_adjust_method
-    ## [1] "BH"
-    ## 
-    ## $gsea_params$seed
-    ## [1] TRUE
-    ## 
-    ## $gsea_params$by
-    ## [1] "fgsea"
-    ## 
-    ## $gsea_params$verbose
-    ## [1] FALSE
-    ## 
-    ## 
-    ## $pairing_params
-    ## $pairing_params$combine_p_method
-    ## [1] "max"
-    ## 
-    ## 
-    ## $classify_params
-    ## $classify_params$activity_threshold
-    ## [1] 0.5
-    ## 
-    ## $classify_params$classify_p_value_threshold
-    ## [1] 0.25
-    ## 
-    ## $classify_params$classify_p_col
-    ## NULL
-    ## 
-    ## $classify_params$single_nes_threshold
-    ## [1] 1
 
 ## Stepwise workflow
 
@@ -228,9 +175,6 @@ ranks <- rank_genes(de_tbl, gene_col = "gene", stat_col = "stat")
 ranks
 ```
 
-    ## GeneA GeneB GeneC GeneD GeneE GeneF 
-    ##     3     2     1    -1    -2    -3
-
 ``` r
 gsea_res <- run_l1000_gsea(
   ranks = ranks,
@@ -238,116 +182,150 @@ gsea_res <- run_l1000_gsea(
   min_gs_size = 2,
   max_gs_size = 500,
   pvalue_cutoff = 1,
-  seed = TRUE
+  seed = TRUE,
+  by = "fgsea"
 )
 
 head(gsea_res)
 ```
 
-    ##                  term Description setSize enrichmentScore       NES    pvalue
-    ## DrugA_Up     DrugA_Up    DrugA_Up       2              -1 -2.163617 0.0910596
-    ## DrugB_Down DrugB_Down  DrugB_Down       2              -1 -2.163617 0.0910596
-    ## DrugA_Down DrugA_Down  DrugA_Down       2               1  2.143611 0.1098361
-    ## DrugB_Up     DrugB_Up    DrugB_Up       2               1  2.143611 0.1098361
-    ##             p.adjust    qvalue rank                     leading_edge
-    ## DrugA_Up   0.1098361 0.1098361    3  tags=100%, list=50%, signal=75%
-    ## DrugB_Down 0.1098361 0.1098361    3  tags=100%, list=50%, signal=75%
-    ## DrugA_Down 0.1098361 0.1098361    2 tags=100%, list=33%, signal=100%
-    ## DrugB_Up   0.1098361 0.1098361    2 tags=100%, list=33%, signal=100%
-    ##            core_enrichment
-    ## DrugA_Up             GeneF
-    ## DrugB_Down           GeneF
-    ## DrugA_Down     GeneA/GeneB
-    ## DrugB_Up       GeneA/GeneB
-
 ``` r
 pair_res <- collapse_pairs(
   gsea_table = gsea_res,
-  combine_p_method = "max"
+  combine_p_method = "max",
+  score_direction = "down_minus_up"
 )
 
 pair_res
 ```
 
-    ##   perturbagen  term_Up Description_Up setSize_Up enrichmentScore_Up    NES_Up
-    ## 1       DrugA DrugA_Up       DrugA_Up          2                 -1 -2.163617
-    ## 2       DrugB DrugB_Up       DrugB_Up          2                  1  2.143611
-    ##   pvalue_Up p.adjust_Up rank_Up                  leading_edge_Up
-    ## 1 0.0910596   0.1098361       3  tags=100%, list=50%, signal=75%
-    ## 2 0.1098361   0.1098361       2 tags=100%, list=33%, signal=100%
-    ##   core_enrichment_Up  term_Down Description_Down setSize_Down
-    ## 1              GeneF DrugA_Down       DrugA_Down            2
-    ## 2        GeneA/GeneB DrugB_Down       DrugB_Down            2
-    ##   enrichmentScore_Down  NES_Down pvalue_Down p.adjust_Down rank_Down
-    ## 1                    1  2.143611   0.1098361     0.1098361         2
-    ## 2                   -1 -2.163617   0.0910596     0.1098361         3
-    ##                  leading_edge_Down core_enrichment_Down combined_stat
-    ## 1 tags=100%, list=33%, signal=100%          GeneA/GeneB            NA
-    ## 2  tags=100%, list=50%, signal=75%                GeneF            NA
-    ##   p_combined activity_score padj_combined
-    ## 1  0.1098361       4.307228     0.1098361
-    ## 2  0.1098361      -4.307228     0.1098361
-
 ``` r
 classified_res <- classify_activity(
   pair_table = pair_res,
   activity_threshold = 0.5,
-  p_value_threshold = 0.25
+  p_value_threshold = 0.25,
+  score_direction = "down_minus_up"
 )
 
 classified_res
 ```
 
-    ##   perturbagen  term_Up Description_Up setSize_Up enrichmentScore_Up    NES_Up
-    ## 1       DrugA DrugA_Up       DrugA_Up          2                 -1 -2.163617
-    ## 2       DrugB DrugB_Up       DrugB_Up          2                  1  2.143611
-    ##   pvalue_Up p.adjust_Up rank_Up                  leading_edge_Up
-    ## 1 0.0910596   0.1098361       3  tags=100%, list=50%, signal=75%
-    ## 2 0.1098361   0.1098361       2 tags=100%, list=33%, signal=100%
-    ##   core_enrichment_Up  term_Down Description_Down setSize_Down
-    ## 1              GeneF DrugA_Down       DrugA_Down            2
-    ## 2        GeneA/GeneB DrugB_Down       DrugB_Down            2
-    ##   enrichmentScore_Down  NES_Down pvalue_Down p.adjust_Down rank_Down
-    ## 1                    1  2.143611   0.1098361     0.1098361         2
-    ## 2                   -1 -2.163617   0.0910596     0.1098361         3
-    ##                  leading_edge_Down core_enrichment_Down combined_stat
-    ## 1 tags=100%, list=33%, signal=100%          GeneA/GeneB            NA
-    ## 2  tags=100%, list=50%, signal=75%                GeneF            NA
-    ##   p_combined activity_score padj_combined is_significant direction_consistent
-    ## 1  0.1098361       4.307228     0.1098361           TRUE                 TRUE
-    ## 2  0.1098361      -4.307228     0.1098361           TRUE                 TRUE
-    ##   activity_class
-    ## 1      Activated
-    ## 2      Inhibited
+## Covariance-aware paired scoring
 
-## Companion data package: `L1000PAIdata`
+`score_joint_activity()` estimates a separate 2-by-2 null covariance for
+every perturbagen. Its `joint_null` input must contain synchronized
+draws with this schema:
 
-`L1000PAI` can analyze user-supplied `TERM2GENE` tables, but it also
-supports bundled libraries distributed through the companion package
-`L1000PAIdata`.
+``` text
+perturbagen | permutation_id | NES_Up | NES_Down
+```
 
-Available bundled library names include:
+For example, after generating the null draws with a common permutation
+index:
+
+``` r
+pair_gls <- score_joint_activity(
+  pair_table = pair_res,
+  joint_null = joint_null,
+  score_direction = "down_minus_up",
+  min_null_draws = 100,
+  ridge = 0
+)
+
+pair_gls[, c(
+  "perturbagen", "activity_score", "activity_gls_z",
+  "p_gls_global", "padj_coherent", "heterogeneity_Q"
+)]
+```
+
+Do not construct `joint_null` from the observed perturbagen rows. It
+must come from common gene-label, sample-label, block-respecting, or
+residual permutations. The default fgsea summary does not expose
+synchronized null draws, so the package will not silently assume zero
+Up/Down correlation.
+
+Strict calls with a GLS score threshold can be made without changing the
+conjunction evidence column:
+
+``` r
+classified_gls <- classify_activity(
+  pair_gls,
+  score_col = "activity_gls_z",
+  p_col = "padj_coherent",
+  activity_threshold = 1,
+  p_value_threshold = 0.05,
+  score_direction = "down_minus_up"
+)
+```
+
+## ExpressionSet workflow
+
+`L1000PAI` also provides helpers for moving from an `ExpressionSet` to a
+ranked gene signature suitable for L1000PAI.
+
+### Inspect an `ExpressionSet`
+
+``` r
+inspect_eset(eset)
+```
+
+### Convert an `ExpressionSet` to `rank_input`
+
+``` r
+res_eset <- eset_to_rank_input(
+  eset = eset,
+  group_col = "source_name_ch1",
+  control_label = "MCF7_unstimulated",
+  case_label = "MCF7_Nutlin stimulated",
+  stat_col = "t",
+  use_voom = "auto"
+)
+
+head(res_eset$rank_input)
+head(res_eset$tt_gene[, c("SYMBOL", "logFC", "adj.P.Val", "t")], 20)
+```
+
+### Run L1000PAI directly from `rank_input`
+
+``` r
+res_pai <- run_l1000_pai(
+  x = res_eset$rank_input,
+  gene_col = "gene",
+  stat_col = "stat",
+  library = "chem",
+  library_mode = "auto",
+  score_direction = "auto",
+  by = "DOSE",
+  nPerm = 1000,
+  min_gs_size = 5,
+  max_gs_size = 500,
+  pvalue_cutoff = 1,
+  seed = TRUE
+)
+
+head(result_table(res_pai), 20)
+```
+
+## Signature libraries from `L1000PAIdata`
+
+`L1000PAI` can analyze any user-supplied `TERM2GENE` table. The L1000
+libraries are provided by the companion package `L1000PAIdata`:
 
 ``` r
 available_l1000_libraries()
+L1000PAIdata::download_l1000pai_data("all")   # crispr, chem and kinase/GPCR
+L1000PAIdata::list_l1000pai_data_files()
 ```
 
-    ## [1] "crispr"           "chem"             "ligand"           "oe"              
-    ## [5] "single_drug"      "kinase_gpcr"      "kinase_gpcr_up"   "kinase_gpcr_down"
-
-Typical options include:
-
-- `"crispr"`
-- `"chem"`
-- `"ligand"`
-- `"oe"`
-- `"single_drug"`
-- `"kinase_gpcr"`
+The `ligand`, `oe` and `single_drug` libraries have no confirmed public
+source and are not downloaded; a local copy whose content matches the
+reference release can be added with
+`L1000PAIdata::register_l1000pai_data_file()`.
 
 ## Switching across libraries
 
 The same ranked transcriptomic input can be analyzed against different
-bundled libraries simply by switching the `library` argument.
+libraries by switching the `library` argument.
 
 ``` r
 res_crispr <- run_l1000_pai(
@@ -355,7 +333,8 @@ res_crispr <- run_l1000_pai(
   gene_col = "gene",
   stat_col = "t",
   library = "crispr",
-  library_mode = "auto"
+  library_mode = "auto",
+  score_direction = "auto"
 )
 
 res_chem <- run_l1000_pai(
@@ -363,23 +342,8 @@ res_chem <- run_l1000_pai(
   gene_col = "gene",
   stat_col = "t",
   library = "chem",
-  library_mode = "auto"
-)
-
-res_ligand <- run_l1000_pai(
-  x = tt,
-  gene_col = "gene",
-  stat_col = "t",
-  library = "ligand",
-  library_mode = "auto"
-)
-
-res_single_drug <- run_l1000_pai(
-  x = tt,
-  gene_col = "gene",
-  stat_col = "t",
-  library = "single_drug",
-  library_mode = "auto"
+  library_mode = "auto",
+  score_direction = "auto"
 )
 
 res_kg <- run_l1000_pai(
@@ -387,18 +351,16 @@ res_kg <- run_l1000_pai(
   gene_col = "gene",
   stat_col = "t",
   library = "kinase_gpcr",
-  library_mode = "auto"
+  library_mode = "auto",
+  score_direction = "auto"
 )
 ```
 
-If `L1000PAIdata` is installed, individual libraries can also be
-retrieved directly:
+Individual libraries can also be retrieved directly:
 
 ``` r
 gmt_crispr <- get_l1000_library("crispr")
 gmt_chem <- get_l1000_library("chem")
-gmt_ligand <- get_l1000_library("ligand")
-gmt_single_drug <- get_l1000_library("single_drug")
 gmt_kg <- get_l1000_library("kinase_gpcr")
 ```
 
@@ -414,35 +376,67 @@ term2gene_single <- data.frame(
 )
 
 detect_library_mode(term2gene_paired)
-```
-
-    ## [1] "paired"
-
-``` r
 detect_library_mode(term2gene_single)
 ```
-
-    ## [1] "single"
 
 When `library_mode = "auto"`, `run_l1000_pai()` chooses:
 
 - **paired mode** for `Up` / `Down` libraries
 - **single mode** for consensus-signature libraries
 
+## Result-table utilities
+
+To make downstream merging and plotting easier, paired result tables
+also include a unified `term` column equal to `perturbagen`.
+
+Utility helpers are also available for compareCluster-like workflows:
+
+``` r
+tbl <- result_table(res_pai)
+
+tbl2 <- add_cluster_column(tbl)
+head(tbl2[, c("Cluster", "term")])
+```
+
+``` r
+final_merged_df <- prepare_cluster_result(
+  df = single_drug_df,
+  other = multi_drug_df
+)
+```
+
+These helpers strip common directional suffixes such as:
+
+- `-up` / `-dn`
+- `_Up` / `_Down`
+- `Up` / `Down`
+
+## GSEA backend notes
+
+`run_l1000_pai()` supports both:
+
+- `by = "fgsea"`
+- `by = "DOSE"`
+
+Recommended usage:
+
+- use `by = "fgsea"` for typical runs
+- use `by = "DOSE", nPerm = 1000` when needed for backend compatibility
+- avoid manually passing `nPerm` to `fgsea` mode
+
 ## Interpretation
 
-For paired libraries, perturbagen activity is summarized using:
+For paired libraries, the interpretation of `Activated` / `Inhibited`
+depends on score direction.
 
-$$
-\mathrm{activity\_score} = NES_{Down} - NES_{Up}
-$$
+For drug-like libraries such as `chem` or `single_drug`:
 
-Default paired classes include:
+- `Activated` usually indicates **concordant perturbation**
+- `Inhibited` usually indicates **reverse perturbation**
 
-- `Activated`
-- `Inhibited`
-- `Discordant`
-- `Not_significant`
+For target-oriented libraries such as `crispr`, the same labels are
+typically interpreted more directly as inferred target-state
+relationships.
 
 For single-signature libraries, default classes include:
 
@@ -450,15 +444,55 @@ For single-signature libraries, default classes include:
 - `Negative_enrichment`
 - `Not_significant`
 
+## Versioned Chem-family taxonomy
+
+Chem family taxonomy v2 is packaged alongside, and does not replace, the
+legacy one-row-per-compound annotation catalog. The exact-term registry
+covers all 5,425 paired Chem perturbagens; 80 terms have mechanism-level
+curation in this release. Direct mechanisms (`direct_moa`) are kept
+separate from broader pathway context (`pathway_context`).
+
+``` r
+families <- get_chem_family_catalog("family_registry", version = "2.0.0")
+
+chem_long <- annotate_chem_families(
+  chem_result,
+  family_level = "direct_moa",
+  evidence_tier = c("A", "B")
+)
+```
+
+`annotate_chem_families()` returns a long many-to-many mapping and
+performs no family aggregation or enrichment. Downstream analyses should
+use the frozen `analysis_unit_id` to give aliases or members of one drug
+program a single vote. Unreviewed library terms remain explicit rather
+than receiving inferred mechanisms.
+
 ## Suggested downstream analyses
 
 Typical downstream uses include:
 
-- ranking candidate perturbagens by `activity_score` or `NES`
-- filtering on combined adjusted p-values
+- ranking candidate perturbagens by `activity_gls_z`, legacy
+  `activity_score`, or `NES`
+- filtering strict paired calls on `padj_coherent`
 - separating `Activated` and `Inhibited` perturbagens
 - extracting perturbagen genes for downstream ORA or GSEA
 - comparing direct DEG-based enrichment with perturbation-inferred
   regulator-level enrichment
-- switching across `crispr`, `chem`, `ligand`, `oe`, `single_drug`, and
-  `kinase_gpcr` libraries
+- switching across the `crispr`, `chem` and `kinase_gpcr` libraries
+- visualizing KEGG pathways with `pathview`
+
+## Citation
+
+``` r
+citation("L1000PAI")
+```
+
+When you use the L1000 libraries, also cite the data sources listed in
+the [`L1000PAIdata` README](https://github.com/yilin1107/L1000PAIdata).
+
+## License
+
+The package code is released under the MIT license. The signature
+libraries are not part of the package and remain under the terms of
+their providers.

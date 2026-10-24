@@ -16,9 +16,10 @@ strip_direction_suffix <- function(x) {
   x <- sub("(?i)-up$", "", x, perl = TRUE)
   x <- sub("(?i)-dn$", "", x, perl = TRUE)
 
-  # paired library style: _Up / _Down / -Up / -Down / " Up" / " Down"
+  # paired library style: _Up / _Down / _Dn / -Up / -Down / -Dn / " Up" / " Down" / " Dn"
   x <- sub("([[:space:]_.-]+)(?i:up)$", "", x, perl = TRUE)
   x <- sub("([[:space:]_.-]+)(?i:down)$", "", x, perl = TRUE)
+  x <- sub("([[:space:]_.-]+)(?i:dn)$", "", x, perl = TRUE)
 
   trimws(x)
 }

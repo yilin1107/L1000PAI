@@ -6,3 +6,25 @@
 .quarto
 /doc/
 /Meta/
+
+# Package build and check artifacts
+/*.Rcheck/
+/*.tar.gz
+/Rplots*.pdf
+/omnipathr-log/
+
+# Generated pathway artifacts at the package root
+/hsa*.png
+/hsa*.xml
+/*.pathview.*
+
+# Local folders that are not part of the package repository
+/submission/
+/新增資料夾/
+/tmp/
+/_local/
+/README.html
+
+# Python runtime files
+__pycache__/
+*.py[cod]

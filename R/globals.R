@@ -1,0 +1,16 @@
+utils::globalVariables(c(
+  ".data",
+  "activity_class",
+  "activity_score",
+  "category",
+  "group_direction",
+  "group_meta_z",
+  "mean_activity_score",
+  "n_meta_sig",
+  "n_significant",
+  "neg_log10_p",
+  "plot_label",
+  "plot_score",
+  "x",
+  "y"
+))

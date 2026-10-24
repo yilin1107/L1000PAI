@@ -83,6 +83,62 @@ test_that("run_l1000_pai works with data.frame input", {
   expect_equal(pai_metadata(res)$input_type, "data.frame")
 })
 
+test_that("run_l1000_pai appends joint GLS evidence without replacing conjunction", {
+  testthat::skip_if_not_installed("clusterProfiler")
+
+  ranks <- c(
+    GeneA = 3.5, GeneB = 2.8, GeneC = 2.0, GeneD = -2.5,
+    GeneE = -2.0, GeneF = -1.8, GeneG = 0.4, GeneH = -0.3
+  )
+  term2gene <- data.frame(
+    term = c(
+      rep("DrugA_Up", 3), rep("DrugA_Down", 3),
+      rep("DrugB_Up", 3), rep("DrugB_Down", 3)
+    ),
+    gene = c(
+      "GeneD", "GeneE", "GeneF", "GeneA", "GeneB", "GeneC",
+      "GeneA", "GeneB", "GeneC", "GeneD", "GeneE", "GeneF"
+    ),
+    stringsAsFactors = FALSE
+  )
+
+  scale <- sqrt(1.5)
+  one_null <- data.frame(
+    permutation_id = 1:4,
+    NES_Up = -c(scale, -scale, 0, 0),
+    NES_Down = c(0, 0, scale, -scale),
+    stringsAsFactors = FALSE
+  )
+  joint_null <- rbind(
+    transform(one_null, perturbagen = "DrugA"),
+    transform(one_null, perturbagen = "DrugB")
+  )
+
+  res <- suppressWarnings(run_l1000_pai(
+    x = ranks,
+    term2gene = term2gene,
+    library_mode = "paired",
+    score_direction = "down_minus_up",
+    min_gs_size = 2,
+    pvalue_cutoff = 1,
+    rng_seed = 2026L,
+    joint_null = joint_null,
+    gls_min_null_draws = 3L,
+    classify_p_value_threshold = 1
+  ))
+
+  tbl <- result_table(res)
+  expect_true(all(c(
+    "activity_score", "activity_gls_z", "p_gls_global", "padj_coherent"
+  ) %in% colnames(tbl)))
+  expect_true(all(is.finite(tbl$activity_gls_z)))
+  expect_equal(pai_metadata(res)$joint_model_params$enabled, TRUE)
+  expect_equal(
+    pai_metadata(res)$joint_model_params$covariance_source,
+    "synchronized_joint_null"
+  )
+})
+
 test_that("run_l1000_pai errors when neither term2gene nor library is provided", {
   ranks <- c(GeneA = 2, GeneB = 1, GeneC = -1)
 
@@ -92,28 +148,62 @@ test_that("run_l1000_pai errors when neither term2gene nor library is provided",
   )
 })
 
-test_that("run_l1000_pai can use bundled library if L1000PAIdata is installed", {
+test_that("run_l1000_pai records complete-universe mode", {
   testthat::skip_if_not_installed("clusterProfiler")
-  testthat::skip_if_not_installed("L1000PAIdata")
+
+  ranks <- c(
+    GeneA = 3, GeneB = 2, GeneC = 1,
+    GeneD = -1, GeneE = -2, GeneF = -3
+  )
+  term2gene <- data.frame(
+    term = c(rep("DrugA_Up", 3), rep("DrugA_Down", 3)),
+    gene = c("GeneA", "GeneB", "GeneC", "GeneD", "GeneE", "GeneF"),
+    stringsAsFactors = FALSE
+  )
+
+  res <- suppressWarnings(run_l1000_pai(
+    x = ranks,
+    term2gene = term2gene,
+    library_mode = "paired",
+    score_direction = "up_minus_down",
+    min_gs_size = 2,
+    pvalue_cutoff = 1,
+    rng_seed = 2026L,
+    keep_all_terms = TRUE,
+    complete_prespecified_terms = TRUE
+  ))
+
+  expect_true(pai_metadata(res)$gsea_params$keep_all_terms)
+  expect_true(pai_metadata(res)$gsea_params$complete_prespecified_terms)
+  expect_equal(nrow(result_table(res)), 1L)
+})
+
+test_that("run_l1000_pai can use the crispr library from L1000PAIdata", {
+  testthat::skip_if_not_installed("clusterProfiler")
+  skip_if_no_l1000_library("crispr")
 
   lib_tbl <- get_l1000_library("crispr")
 
   genes <- unique(lib_tbl$gene)
   genes <- genes[!is.na(genes) & genes != ""]
-  testthat::skip_if(length(genes) < 50, "Bundled library has too few genes for test.")
+  testthat::skip_if(length(genes) < 50, "The library has too few genes for this test.")
 
   sel_genes <- genes[1:50]
   ranks <- seq(from = 5, to = -5, length.out = length(sel_genes))
   names(ranks) <- sel_genes
 
-  res <- run_l1000_pai(
-    x = ranks,
-    library = "crispr",
-    min_gs_size = 2,
-    max_gs_size = 500,
-    pvalue_cutoff = 1,
-    seed = TRUE,
-    classify_p_value_threshold = 1
+  # Tiny synthetic CI fixtures can trigger fgsea boundary warnings that are
+  # unrelated to the provider integration contract tested here.
+  res <- suppressWarnings(
+    run_l1000_pai(
+      x = ranks,
+      library = "crispr",
+      min_gs_size = 2,
+      max_gs_size = 500,
+      pvalue_cutoff = 1,
+      seed = TRUE,
+      classify_p_value_threshold = 1
+    )
   )
 
   expect_true(methods::is(res, "L1000PAIResult"))

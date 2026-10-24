@@ -12,7 +12,7 @@ detect_library_mode <- function(term2gene) {
   term <- as.character(term2gene[[1]])
 
   has_up <- any(grepl("([[:space:]_.-]+)(Up|up)$", term))
-  has_down <- any(grepl("([[:space:]_.-]+)(Down|down)$", term))
+  has_down <- any(grepl("([[:space:]_.-]+)(Down|down|Dn|dn)$", term))
 
   if (has_up && has_down) {
     return("paired")

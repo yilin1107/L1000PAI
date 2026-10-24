@@ -1,35 +1,51 @@
 Package: L1000PAI
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Direction-Aware Perturbation Activity Inference from Ranked
+    Transcriptomic Signatures
+Version: 1.0.0
+Authors@R:
+    person("Yilin", "Chiu", , "yilin1107@mail.ndmutsgh.edu.tw", role = c("aut", "cre"))
+Description: Infers the activity of genes and compounds from a ranked
+    transcriptomic signature by comparing it with paired Up/Down perturbation
+    signatures, such as the LINCS L1000 CRISPR knockout and chemical
+    perturbation consensus libraries. Each arm is tested by preranked gene set
+    enrichment analysis, and a directional intersection-union test requires
+    both arms to support the same direction before an activity call is made.
+    Single-signature libraries, covariance-aware joint scoring from
+    synchronized null draws, sample-level scoring and versioned compound
+    annotations are also provided, with helpers that turn ExpressionSet-based
+    differential expression results into ranked inputs.
 License: MIT + file LICENSE
+URL: https://github.com/yilin1107/L1000PAI
+BugReports: https://github.com/yilin1107/L1000PAI/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Depends:
+    R (>= 4.3)
+Imports:
+    methods,
+    stats,
+    utils,
+    magrittr,
+    dplyr,
+    clusterProfiler,
+    fgsea,
+    Biobase,
+    limma,
+    AnnotationDbi,
+    org.Hs.eg.db
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
     BiocStyle,
-    DESeq2,
-    limma,
-    L1000PAIdata
-Config/testthat/edition: 3
-Imports:
-    methods,
-    stats,
-    utils,
-    dplyr,
-    tibble,
-    stringr,
-    rlang,
-    tidyr,
+    L1000PAIdata (>= 1.0.0),
+    digest,
     ggplot2,
-    ggrepel,
-    clusterProfiler,
-    BiocGenerics,
-    S4Vectors,
-    SummarizedExperiment
+    ggrepel
+Remotes:
+    yilin1107/L1000PAIdata@v1.0.0
+Config/testthat/edition: 3
 VignetteBuilder: knitr
+biocViews: GeneExpression, GeneSetEnrichment, Transcriptomics,
+    DifferentialExpression, Software

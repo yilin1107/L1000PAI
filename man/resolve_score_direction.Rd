@@ -10,7 +10,7 @@ resolve_score_direction(
 )
 }
 \arguments{
-\item{library}{Optional bundled library name.}
+\item{library}{Optional L1000 library name.}
 
 \item{score_direction}{One of \code{"auto"}, \code{"down_minus_up"}, or
 \code{"up_minus_down"}.}

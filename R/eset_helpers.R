@@ -3,6 +3,8 @@
 #' Print a concise overview of an [Biobase::ExpressionSet], including assay
 #' dimensions, pData columns, sample names, and low-cardinality pData values.
 #'
+#' @importFrom magrittr %>%
+#'
 #' @param eset An [Biobase::ExpressionSet] object.
 #' @param n Number of rows to print from pData and fData. Default is `10`.
 #' @param max_unique Maximum number of unique values to display for a pData
@@ -148,7 +150,7 @@ run_limma_from_eset <- function(
   design <- stats::model.matrix(~ 0 + group)
   colnames(design) <- c("CTRL", "CASE")
 
-  contrast_mat <- limma::makeContrasts(CASE - CTRL, levels = design)
+  contrast_mat <- limma::makeContrasts(contrasts = "CASE-CTRL", levels = design)
 
   auto_counts <- looks_like_raw_counts(expr_mat)
 
@@ -234,7 +236,7 @@ add_symbol_to_limma_table <- function(
     out$SYMBOL <- key_vec
   } else if (feature_col == "ENTREZID") {
     out$SYMBOL <- AnnotationDbi::mapIds(
-      org.Hs.eg.db,
+      org.Hs.eg.db::org.Hs.eg.db,
       keys = key_vec,
       keytype = "ENTREZID",
       column = "SYMBOL",
@@ -242,7 +244,7 @@ add_symbol_to_limma_table <- function(
     )
   } else if (feature_col == "ENSEMBL") {
     out$SYMBOL <- AnnotationDbi::mapIds(
-      org.Hs.eg.db,
+      org.Hs.eg.db::org.Hs.eg.db,
       keys = key_vec,
       keytype = "ENSEMBL",
       column = "SYMBOL",
@@ -275,9 +277,9 @@ collapse_limma_to_genes <- function(tt_all, stat_col = "t") {
   }
 
   tt_all %>%
-    dplyr::filter(!is.na(SYMBOL), SYMBOL != "") %>%
-    dplyr::arrange(desc(abs(.data[[stat_col]]))) %>%
-    dplyr::distinct(SYMBOL, .keep_all = TRUE)
+    dplyr::filter(!is.na(.data$SYMBOL), .data$SYMBOL != "") %>%
+    dplyr::arrange(dplyr::desc(abs(.data[[stat_col]]))) %>%
+    dplyr::distinct(.data$SYMBOL, .keep_all = TRUE)
 }
 
 
@@ -328,14 +330,14 @@ eset_to_rank_input <- function(
 
   rank_input <- tt_gene %>%
     dplyr::transmute(
-      gene = SYMBOL,
+      gene = .data$SYMBOL,
       stat = .data[[stat_col]]
     ) %>%
-    dplyr::arrange(desc(stat))
+    dplyr::arrange(dplyr::desc(.data$stat))
 
   if (jitter_ties) {
     rank_input <- rank_input %>%
-      dplyr::mutate(stat = stat + seq_along(stat) * 1e-12)
+      dplyr::mutate(stat = .data$stat + seq_along(.data$stat) * 1e-12)
   }
 
   list(

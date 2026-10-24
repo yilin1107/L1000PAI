@@ -20,8 +20,6 @@ setClass(
   )
 )
 
-#' @rdname L1000PAIResult-class
-#' @export
 setMethod("show", "L1000PAIResult", function(object) {
   cat("L1000PAIResult\n")
   cat("  Ranked genes:", length(object@input_rank), "\n")
@@ -54,17 +52,3 @@ L1000PAIResult <- function(input_rank, gsea_table, pair_table, metadata = list()
     metadata = metadata
   )
 }
-
-#' @export
-setMethod("show", "L1000PAIResult", function(object) {
-  cat("L1000PAIResult\n")
-  cat("  Ranked genes:", length(object@input_rank), "\n")
-  cat("  GSEA rows:", nrow(object@gsea_table), "\n")
-  cat("  Final rows:", nrow(object@pair_table), "\n")
-  if (!is.null(object@metadata$library)) {
-    cat("  Library:", object@metadata$library, "\n")
-  }
-  if (!is.null(object@metadata$library_mode_used)) {
-    cat("  Mode:", object@metadata$library_mode_used, "\n")
-  }
-})

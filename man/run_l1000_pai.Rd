@@ -27,7 +27,18 @@ run_l1000_pai(
   activity_threshold = 1,
   classify_p_value_threshold = 0.05,
   classify_p_col = NULL,
-  single_nes_threshold = 1
+  single_nes_threshold = 1,
+  collect_annotation_tables = TRUE,
+  rng_seed = NULL,
+  keep_all_terms = FALSE,
+  complete_prespecified_terms = FALSE,
+  pvalue_semantics = c("observed_tail", "two_sided"),
+  pair_p_adjust_method = "BH",
+  joint_null = NULL,
+  gls_ridge = 0,
+  gls_min_null_draws = 50L,
+  classify_score_col = "activity_score",
+  classify_require_coherent = TRUE
 )
 }
 \arguments{
@@ -43,7 +54,7 @@ a named numeric vector.}
 \item{term2gene}{Optional two-column TERM2GENE data.frame. If supplied,
 \code{library} is ignored.}
 
-\item{library}{Optional bundled library name to retrieve via
+\item{library}{Optional L1000 library name to retrieve via
 \code{\link[=get_l1000_library]{get_l1000_library()}}. Used only when \code{term2gene} is \code{NULL}.}
 
 \item{data_package}{Companion data package name. Default is \code{"L1000PAIdata"}.}
@@ -87,6 +98,44 @@ paired activation/inhibition classification.}
 
 \item{single_nes_threshold}{Minimum absolute NES required for single-signature
 positive/negative enrichment classification. Default is \code{1}.}
+
+\item{collect_annotation_tables}{Logical; if \code{TRUE}, package-level
+annotation tables are collected automatically for supported
+libraries (\code{chem}, \code{ligand}, \code{kinase_gpcr}). Default is \code{TRUE}.}
+
+\item{rng_seed}{Optional explicit integer RNG seed passed to
+\code{\link[=run_l1000_gsea]{run_l1000_gsea()}}.}
+
+\item{keep_all_terms}{Logical; retain the complete size-eligible term
+universe when the fgsea backend cannot estimate a p-value for a pathway.
+Such terms receive conservative \code{pvalue = 1} and \code{NES = 0}. Default is
+\code{FALSE} for backward compatibility.}
+
+\item{complete_prespecified_terms}{Logical; conservatively retain every
+prespecified term with ranked-gene overlap, even when its overlap is
+outside the fixed GSEA size limits. This does not relax those limits.}
+
+\item{pvalue_semantics}{Interpretation of paired GSEA p-values passed to
+\code{\link[=collapse_pairs]{collapse_pairs()}}. Default is \code{"observed_tail"}.}
+
+\item{pair_p_adjust_method}{Multiple-testing method for paired directional
+hypotheses. Default is \code{"BH"}.}
+
+\item{joint_null}{Optional synchronized Up/Down null-draw data.frame passed
+to \code{\link[=score_joint_activity]{score_joint_activity()}}. When \code{NULL}, no GLS evidence is produced.}
+
+\item{gls_ridge}{Non-negative relative covariance ridge used when
+\code{joint_null} is supplied. Default is zero.}
+
+\item{gls_min_null_draws}{Minimum synchronized null draws per perturbagen.}
+
+\item{classify_score_col}{Score column used by \code{\link[=classify_activity]{classify_activity()}}. The
+default preserves legacy NES-difference thresholds; use
+\code{"activity_gls_z"} to threshold standardized GLS activity.}
+
+\item{classify_require_coherent}{Logical; require the adjusted directional
+conjunction whenever it is available, even if \code{classify_p_col} selects a
+global or legacy p-value. Default is \code{TRUE}.}
 }
 \value{
 An \code{L1000PAIResult} object.

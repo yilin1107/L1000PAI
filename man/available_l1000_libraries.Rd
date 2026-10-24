@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_l1000_library.R
 \name{available_l1000_libraries}
 \alias{available_l1000_libraries}
-\title{List supported bundled L1000 libraries}
+\title{List supported L1000 libraries}
 \usage{
 available_l1000_libraries()
 }
@@ -10,5 +10,5 @@ available_l1000_libraries()
 A character vector of supported library names.
 }
 \description{
-List supported bundled L1000 libraries
+List supported L1000 libraries
 }

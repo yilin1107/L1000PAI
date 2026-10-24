@@ -7,7 +7,9 @@
 collapse_pairs(
   gsea_table,
   combine_p_method = "max",
-  score_direction = c("down_minus_up", "up_minus_down")
+  score_direction = c("down_minus_up", "up_minus_down"),
+  pvalue_semantics = c("observed_tail", "two_sided"),
+  pair_p_adjust_method = "BH"
 )
 }
 \arguments{
@@ -22,10 +24,24 @@ option.}
 \item{score_direction}{One of \code{"down_minus_up"} or \code{"up_minus_down"}.
 \code{"down_minus_up"} computes \code{NES_Down - NES_Up}, whereas \code{"up_minus_down"}
 computes \code{NES_Up - NES_Down}.}
+
+\item{pvalue_semantics}{Interpretation of the input GSEA p-values.
+\code{"observed_tail"} (the default for clusterProfiler/fgsea and DOSE GSEA)
+treats each p-value as conditional on the observed enrichment direction
+and assigns p = 1 to the opposite direction. \code{"two_sided"} converts a
+conventional two-sided p-value to directional one-sided p-values using
+the NES sign.}
+
+\item{pair_p_adjust_method}{Multiple-testing method used for paired and
+directional conjunction p-values. Default is \code{"BH"}.}
 }
 \value{
 A data.frame with paired \code{Up}/\code{Down} statistics, activity score,
-combined p-values, and a unified \code{term} column.
+legacy combined p-values, directional activation/inhibition conjunction
+p-values, and a unified \code{term} column. Activation and inhibition
+hypotheses are adjusted together. Pairs with a missing NES are retained
+with missing activity and directional state; they cannot support a
+directional activity call. Other estimable pairs are still processed.
 }
 \description{
 Pair L1000 GSEA results with \code{Up} and \code{Down} suffixes and summarize them

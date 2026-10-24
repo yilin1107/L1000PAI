@@ -15,6 +15,16 @@ test_that("detect_library_mode identifies paired and single libraries", {
   expect_equal(detect_library_mode(single_t2g), "single")
 })
 
+test_that("detect_library_mode treats dn suffix as paired", {
+  paired_t2g_dn <- data.frame(
+    term = c("TP53 up", "TP53 up", "TP53 dn", "TP53 dn"),
+    gene = c("A", "B", "C", "D"),
+    stringsAsFactors = FALSE
+  )
+
+  expect_equal(detect_library_mode(paired_t2g_dn), "paired")
+})
+
 test_that("classify_single_signatures classifies positive and negative enrichment", {
   single_tbl <- data.frame(
     term = c("TP53", "RB1", "MYC"),

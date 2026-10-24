@@ -16,7 +16,10 @@ run_l1000_gsea(
   seed = FALSE,
   by = "fgsea",
   verbose = FALSE,
-  nPerm = NULL
+  nPerm = NULL,
+  rng_seed = NULL,
+  keep_all_terms = FALSE,
+  complete_prespecified_terms = FALSE
 )
 }
 \arguments{
@@ -45,6 +48,24 @@ columns \code{gene} and \code{stat}.}
 
 \item{nPerm}{Number of permutations for the \code{"DOSE"} backend. If \code{NULL} and
 \code{by = "DOSE"}, defaults to \code{1000}.}
+
+\item{rng_seed}{Optional explicit integer RNG seed. When supplied, it is set
+immediately before GSEA and also enables the backend's seeded execution.
+This is preferred over relying on the session's pre-existing RNG state.}
+
+\item{keep_all_terms}{Logical; for the \code{"fgsea"} backend, restore every
+size-eligible pathway that the backend evaluated, including pathways for
+which adaptive multilevel p-value estimation returned \code{NA}. Such rows are
+retained with conservative \code{pvalue = 1}, \code{p.adjust = 1}, and \code{qvalue = 1}.
+Default is \code{FALSE} for backward compatibility. Set \code{TRUE} when a complete
+prespecified testing universe is required.}
+
+\item{complete_prespecified_terms}{Logical; for the \code{"fgsea"} backend,
+conservatively retain every prespecified TERM2GENE term with at least one
+ranked-gene overlap, including terms outside \code{min_gs_size} or
+\code{max_gs_size}. Size-ineligible rows receive \code{pvalue = 1}, \code{NES = 0}, and
+are not treated as estimated enrichment results. This does not relax the
+size thresholds. Default is \code{FALSE}.}
 }
 \value{
 A data.frame of GSEA results with a standardized \code{term} column.

@@ -1,6 +1,6 @@
 #' Resolve paired-score direction from library type
 #'
-#' @param library Optional bundled library name.
+#' @param library Optional L1000 library name.
 #' @param score_direction One of `"auto"`, `"down_minus_up"`, or
 #'   `"up_minus_down"`.
 #'

@@ -1,0 +1,80 @@
+name: R-CMD-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-package:
+    name: ${{ matrix.config.os }} / R ${{ matrix.config.r }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macos-latest, r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest, r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest, r: 'release'}
+          - {os: ubuntu-latest, r: 'oldrel-1'}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      _R_CHECK_FORCE_SUGGESTS_: false
+    steps:
+      - uses: actions/checkout@v6
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"hard"'
+          extra-packages: any::rcmdcheck, any::testthat, any::knitr, any::rmarkdown, bioc::BiocStyle, any::ggplot2, any::ggrepel
+          needs: check
+      - name: Install the tiny companion contract fixture
+        run: R CMD INSTALL tests/fixtures/L1000PAIdata
+      - name: Build vignettes and check the core package
+        shell: Rscript {0}
+        run: |
+          rcmdcheck::rcmdcheck(
+            args = "--no-manual",
+            error_on = "warning",
+            check_dir = "check"
+          )
+
+  real-libraries:
+    name: ubuntu-latest / R release / downloaded L1000 libraries
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - uses: actions/checkout@v6
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"hard"'
+          extra-packages: any::rcmdcheck, any::testthat, any::knitr, any::rmarkdown, bioc::BiocStyle, any::ggplot2, any::ggrepel, github::yilin1107/L1000PAIdata@v1.0.0
+          needs: check
+      - name: Download and verify the crispr, chem and kinase/GPCR libraries
+        shell: Rscript {0}
+        run: L1000PAIdata::download_l1000pai_data("all")
+      - name: Check the core package against the downloaded libraries
+        shell: Rscript {0}
+        run: |
+          rcmdcheck::rcmdcheck(
+            args = "--no-manual",
+            error_on = "warning",
+            check_dir = "check"
+          )

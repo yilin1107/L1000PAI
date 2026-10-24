@@ -1,0 +1,26 @@
+{
+  "title": "L1000PAI: Direction-Aware Perturbation Activity Inference from Ranked Transcriptomic Signatures",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Chiu, Yilin"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "L1000",
+    "LINCS",
+    "perturbation signatures",
+    "gene set enrichment analysis",
+    "intersection-union test",
+    "R package"
+  ],
+  "description": "R package for direction-aware perturbation activity inference from ranked transcriptomic signatures using paired Up/Down L1000 signature libraries. The L1000 libraries are not included; they are downloaded and verified by the companion package L1000PAIdata.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/yilin1107/L1000PAIdata",
+      "relation": "requires",
+      "scheme": "url"
+    }
+  ]
+}
